@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MagazinOnline</string>
+    <string name="vanzator">Vanzator</string>
+    <string name="client">Client</string>
+    <string name="creeaza">Creeaza</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+</resources>
