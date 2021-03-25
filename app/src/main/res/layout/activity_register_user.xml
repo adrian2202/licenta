@@ -8,7 +8,16 @@
     android:layout_margin="80dp"
     android:orientation="vertical"
     android:layout_gravity="center_vertical"
-    tools:context=".MainActivity">
+    tools:context=".RegisterUser">
+    <TextView
+        android:id="@+id/homePageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MagazinOnline"
+        android:textColor="#4689C8"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
 
     <TextView
         android:id="@+id/Create_new_account"
@@ -26,7 +35,15 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/emailRegImput"
+            android:id="@+id/fullNumeEditText"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Full name"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/emailEditText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:hint="Email"
@@ -34,20 +51,14 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/password1"
+            android:id="@+id/passwordEditText"
             android:layout_width="266dp"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:textColor="#000000"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/password2"
-            android:layout_width="271dp"
-            android:layout_height="wrap_content"
-            android:hint="Re-Password"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+
     </LinearLayout>
 
     <Button
@@ -64,5 +75,12 @@
         android:textStyle="bold">
 
     </Button>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.ProgressBar"
+        />
 
 </LinearLayout>

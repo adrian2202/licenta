@@ -65,7 +65,8 @@
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
         android:textAlignment="center"
-        android:onClick="login"/>
+        android:onClick="login"
+        tools:ignore="OnClick" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,7 +82,7 @@
             tools:layout_editor_absoluteX="45dp"
             tools:layout_editor_absoluteY="417dp"
             tools:ignore="MissingConstraints"
-            android:onClick="creeateAccount"/>
+            />
 
         <TextView
             android:id="@+id/textForgot"
@@ -94,6 +95,12 @@
     </LinearLayout>
 
 
-
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        style="@style/Widget.AppCompat.ProgressBar"
+        />
 
 </LinearLayout>

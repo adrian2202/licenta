@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagazinOnline">
-        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ForgotPassword" />
         <activity android:name=".EditData" />
         <activity android:name=".Home" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".RegisterUser" />
         <activity android:name=".LogIn">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
