@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "61136738381",
+    "project_id": "magazinproduse-651b0",
+    "storage_bucket": "magazinproduse-651b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61136738381:android:0a48224e263cdd8f91a404",
+        "android_client_info": {
+          "package_name": "com.example.magazinonline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61136738381-26cb6n8m6hu7o3le4q0t4ndteqedtah8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT3abWpkdh01EbPmheqJs8s31S576cG9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61136738381-26cb6n8m6hu7o3le4q0t4ndteqedtah8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

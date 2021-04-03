@@ -8,10 +8,14 @@ public class User {
     {
 
     }
-    public User(String fullName,String email)
+    public User(String email,String fullName)
     {
         this.fullName=fullName;
         this.email=email;
 
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
