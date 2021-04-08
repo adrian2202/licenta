@@ -10,51 +10,52 @@
         android:id="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
-        />
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-     <TextView
-         android:id="@+id/emailAddressTitle"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Email Address"
-         android:textStyle="bold"
-         app:layout_constraintTop_toBottomOf="@+id/greeting"
-         app:layout_constraintLeft_toLeftOf="@+id/greeting"
-         android:layout_marginTop="20dp"
-         android:textSize="20sp"
-         />
+    <TextView
+        android:id="@+id/emailAddressTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Email Address"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/greeting"
+        app:layout_constraintTop_toBottomOf="@+id/greeting" />
+
     <TextView
         android:id="@+id/emailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddressTitle"
-        app:layout_constraintLeft_toLeftOf="@+id/emailAddressTitle"
         android:layout_marginLeft="30dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@+id/emailAddressTitle"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddressTitle" />
+
     <TextView
         android:id="@+id/fullNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Full Name"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/emailAddress"
-        app:layout_constraintLeft_toLeftOf="@+id/emailAddress"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"/>
+        android:text="Full Name"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@+id/emailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
+
     <TextView
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameTitle"
-        app:layout_constraintLeft_toLeftOf="@+id/fullNameTitle"
         android:layout_marginLeft="30dp"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@+id/fullNameTitle"
+        app:layout_constraintTop_toBottomOf="@+id/fullNameTitle" />
 
 
     <Button
@@ -64,11 +65,11 @@
         android:text="LogOut"
         android:textSize="30sp"
         android:textStyle="bold"
-       app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
 
 
-      />
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,19 +12,18 @@
         android:id="@+id/textView"
         android:layout_width="157dp"
         android:layout_height="26dp"
-        android:text="Autentificare"
         android:layout_marginBottom="60dp"
+        android:text="Autentificare"
         android:textColor="#000000"
         android:textSize="24sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_margin="20dp"
         android:gravity="center"
-        android:layout_margin="20dp" >
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editEmailAddress"
@@ -32,16 +31,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/email"
-            android:inputType="textEmailAddress"
-            />
-</LinearLayout>
+            android:inputType="textEmailAddress" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_margin="20dp"
         android:gravity="center"
-        android:layout_margin="20dp">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -49,23 +47,21 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textEmailAddress"
-           />
+            android:inputType="textEmailAddress" />
 
 
     </LinearLayout>
-
 
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login"
         android:layout_marginStart="45dp"
         android:layout_marginEnd="45dp"
-        android:textAlignment="center"
         android:onClick="login"
+        android:text="@string/login"
+        android:textAlignment="center"
         tools:ignore="OnClick" />
 
     <LinearLayout
@@ -77,12 +73,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:text="Creeate account"
             android:layout_marginStart="45dp"
-            tools:layout_editor_absoluteX="45dp"
-            tools:layout_editor_absoluteY="417dp"
+            android:text="Creeate account"
             tools:ignore="MissingConstraints"
-            />
+            tools:layout_editor_absoluteX="45dp"
+            tools:layout_editor_absoluteY="417dp" />
 
         <TextView
             android:id="@+id/textForgot"
@@ -90,17 +85,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginStart="60dp"
-            android:text="Forgot Password?"
-            />
+            android:text="Forgot Password?" />
     </LinearLayout>
 
 
     <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:visibility="gone"
-        style="@style/Widget.AppCompat.ProgressBar"
-        />
+        android:visibility="gone" />
 
 </LinearLayout>
