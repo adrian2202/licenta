@@ -35,7 +35,7 @@ public class ForgotPassword extends AppCompatActivity {
         resetPasswordButton= (Button) findViewById(R.id.resetPasswordButton);
         progressBarr=(ProgressBar) findViewById(R.id.progressBarr);
         auth = FirebaseAuth.getInstance();
-        Log.e(" onCreate", "intra aici1 ");
+
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,14 +46,14 @@ public class ForgotPassword extends AppCompatActivity {
     }
 
     private void resetPassword()
-    {Log.e(" onCreate", "intra aici1 ");
+    {
         String email=emailAddress.getText().toString().trim();
         if(email.isEmpty())
         {
             emailAddress.setError("Email is required");
             emailAddress.requestFocus();
             return;
-        }Log.e(" onCreate", "intra aici2 ");
+        }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches())
         {
             emailAddress.setError("Please provide valid email!");
@@ -61,14 +61,14 @@ public class ForgotPassword extends AppCompatActivity {
             return;
 
         }
-           Log.e(" onCreate", "intra aici3 ");
+
         progressBarr.setVisibility(View.VISIBLE);
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task)
                {
                 if(task.isSuccessful())
-                { Log.e(" onComplete", " nu intra aici ");
+                {
                     Toast.makeText(ForgotPassword.this, "Check your email to reset your password!", Toast.LENGTH_LONG).show();
 
                 }

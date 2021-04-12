@@ -8,6 +8,8 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -16,6 +18,42 @@ import com.google.android.material.navigation.NavigationView;
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.drawer_menu2,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.search:
+                Toast.makeText(this," Search selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.shopping:
+                Toast.makeText(this,"Shopping selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item3:
+                Toast.makeText(this," Item 3 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item4:
+                Toast.makeText(this," Item 4 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.subitem1:
+                Toast.makeText(this," Subitem 1 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.subitem2:
+                Toast.makeText(this," Subitem 2 selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+        }
 
 
     @Override
@@ -39,6 +77,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                     new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
+
 
     }
 
