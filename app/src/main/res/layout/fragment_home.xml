@@ -1,46 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
     android:orientation="vertical"
-    android:gravity="center"
-    android:padding="9dp"
-    >
-    <TextView
+    tools:context=".HomeFragment">
+
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/slider"
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        app:auto_cycle="true"
+        app:corner_radius="5"
+        app:delay="50"
+        app:error_image="@drawable/grey_background"
+        app:placeholder="@drawable/grey_background" />
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sugestii de prezentare"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="600dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="30sp"
-        />
+        android:orientation="vertical"
+        android:padding="9dp">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="95dp"
-        jkj/>
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="30sp"
+            android:text="Categori:"
+            android:textSize="15dp"
+            android:textStyle="italic" />
 
-    <Button
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="@+id/textView4"
+            android:layout_gravity="center"
+            android:layout_marginEnd="-13dp"
+            android:paddingStart="50dp"
+            android:paddingEnd="50dp" />
+
+        <Button
             android:id="@+id/sendLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="500dp"
             android:text="Send email for reset"
             android:textAlignment="center"
             android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="20dp"
-            android:layout_marginTop="500dp"/>
+            android:textSize="20dp" />
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
