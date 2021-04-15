@@ -23,13 +23,12 @@ import java.util.List;
 public class HomeFragment extends Fragment  {
    Button sendLogin;
    RecyclerView recyclerView;
-   ArrayList<MainModel>mainModels;
-   MainAdapter mainAdapter;
+//   ArrayList<MainModel>mainModels;
+//   MainAdapter mainAdapter;
+    List<App> appList;
 
 
-      public HomeFragment(){
 
-      }
 
     @Nullable
     @Override
@@ -44,25 +43,44 @@ public class HomeFragment extends Fragment  {
             }
         });
 
-        recyclerView = v.findViewById(R.id.recyclerView);
-        Integer[] langLogo = {R.drawable.poza2, R.drawable.poza3, R.drawable.poza4};
-        String[] langName = {"Mancare", "Bauturi", "Locuri"};
+//        recyclerView = v.findViewById(R.id.recyclerView);
+//        Integer[] langLogo = {R.drawable.poza2, R.drawable.poza3, R.drawable.poza4};
+//        String[] langName = {"Mancare", "Bauturi", "Locuri"};
+//
+//        mainModels = new ArrayList<>();
+//        for (int i = 0; i < langLogo.length; i++) {
+//            MainModel model = new MainModel(langLogo[i], langName[i]);
+//            mainModels.add(model);
+//        }
+//        //Design horizontal Layout
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(
+//                (Context) HomeFragment.this.getActivity(), LinearLayoutManager.HORIZONTAL, false);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
+//
+//        //Initialize Main Adapter
+//        mainAdapter = new MainAdapter(HomeFragment.this, mainModels);
+//        // Set mainAdapter to RecyclerView
+//        recyclerView.setAdapter(mainAdapter);
 
-        mainModels = new ArrayList<>();
-        for (int i = 0; i < langLogo.length; i++) {
-            MainModel model = new MainModel(langLogo[i], langName[i]);
-            mainModels.add(model);
-        }
-        //Design horizontal Layout
-        LinearLayoutManager layoutManager = new LinearLayoutManager(
-                (Context) HomeFragment.this.getActivity(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView=v.findViewById(R.id.recyclerView);
 
-        //Initialize Main Adapter
-        mainAdapter = new MainAdapter(HomeFragment.this, mainModels);
-        // Set mainAdapter to RecyclerView
-        recyclerView.setAdapter(mainAdapter);
+        appList=new ArrayList<>();
+
+        appList.add(new App(R.drawable.poza2, "mancare"));
+        appList.add(new App(R.drawable.poza3, "bautura"));
+        appList.add(new App(R.drawable.poza4, "peisaj"));
+        appList.add(new App(R.drawable.poza5, "oras"));
+
+        LinearLayoutManager manager=new LinearLayoutManager((Context) HomeFragment.this.getActivity());
+        manager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recyclerView.setLayoutManager(manager);
+        CustomAdapter adapter = new CustomAdapter(HomeFragment.this, appList);
+        recyclerView.setAdapter(adapter);
+
+
+
+
 
 
         ImageSlider imageSlider= v.findViewById(R.id.slider);
