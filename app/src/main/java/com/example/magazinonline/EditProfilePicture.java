@@ -57,7 +57,7 @@ public class EditProfilePicture extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         databaseReference= FirebaseDatabase.getInstance().getReference().child("User");
         storageProfilePicsRef= FirebaseStorage.getInstance().getReference().child("Profile Pic");
-        txtName=findViewById(R.id.txtName);
+//        txtName=findViewById(R.id.txtName);
 
         profileImageView=findViewById(R.id.profile_image);
 

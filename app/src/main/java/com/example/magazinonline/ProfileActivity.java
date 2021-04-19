@@ -41,8 +41,10 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
+
         log_out = (ImageView) findViewById(R.id.imgView4);
         profileImageView = findViewById(R.id.dp);
         log_out.setOnClickListener(new View.OnClickListener() {
@@ -62,11 +64,12 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        profileImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
+        getUserinfo();
+//        profileImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            }
+//        });
 
 //        txtName=(TextView) findViewById(R.id.txtName);
 //        txtName.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("User");
         userID = user.getUid();
 
-        //final TextView greetingTextView=(TextView) findViewById(R.id.greeting);
+        final TextView greetingTextView=(TextView) findViewById(R.id.greeting);
         final TextView fullNameTextView = (TextView) findViewById(R.id.Name);
         final TextView prenumeTextView = (TextView) findViewById(R.id.Prenume);
         final TextView nrTELTextView = (TextView) findViewById(R.id.NrTel);
@@ -109,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity {
                     String Prenume = userProfile.prenume;
                     String telefon = userProfile.nrtel;
 
-                    //greetingTextView.setText(  fullName);
+                    greetingTextView.setText(  fullName);
                     fullNameTextView.setText(fullName);
                     emailTextView.setText(email);
                     prenumeTextView.setText(Prenume);
@@ -134,5 +137,25 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void getUserinfo() {
 
+        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0)
+                {
+                    if(dataSnapshot.hasChild("image"))
+                    {
+                        String image= dataSnapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(profileImageView);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 }
