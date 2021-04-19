@@ -36,10 +36,24 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/fullNumeEditText"
+            android:id="@+id/NumeEditText"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
-            android:hint="Full name"
+            android:hint="Nume familie"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/prenumeEditText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Prenume"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/nrTelEditText"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Nr telefon"
             android:textColor="#000000"
             android:textSize="20sp" />
 

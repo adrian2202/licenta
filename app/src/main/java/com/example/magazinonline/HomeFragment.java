@@ -43,34 +43,17 @@ public class HomeFragment extends Fragment  {
             }
         });
 
-//        recyclerView = v.findViewById(R.id.recyclerView);
-//        Integer[] langLogo = {R.drawable.poza2, R.drawable.poza3, R.drawable.poza4};
-//        String[] langName = {"Mancare", "Bauturi", "Locuri"};
-//
-//        mainModels = new ArrayList<>();
-//        for (int i = 0; i < langLogo.length; i++) {
-//            MainModel model = new MainModel(langLogo[i], langName[i]);
-//            mainModels.add(model);
-//        }
-//        //Design horizontal Layout
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(
-//                (Context) HomeFragment.this.getActivity(), LinearLayoutManager.HORIZONTAL, false);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-//
-//        //Initialize Main Adapter
-//        mainAdapter = new MainAdapter(HomeFragment.this, mainModels);
-//        // Set mainAdapter to RecyclerView
-//        recyclerView.setAdapter(mainAdapter);
+
 
         recyclerView=v.findViewById(R.id.recyclerView);
 
         appList=new ArrayList<>();
 
-        appList.add(new App(R.drawable.poza2, "mancare"));
-        appList.add(new App(R.drawable.poza3, "bautura"));
-        appList.add(new App(R.drawable.poza4, "peisaj"));
-        appList.add(new App(R.drawable.poza5, "oras"));
+        appList.add(new App(R.drawable.mancaruri_traditionale, "Mancaruri traditionale"));
+        appList.add(new App(R.drawable.produse_bio, "Produse bio "));
+        appList.add(new App(R.drawable.bauturi_specifice, "Bauturi specifice"));
+        appList.add(new App(R.drawable.fructe_legume, "Fructe si legume"));
+
 
         LinearLayoutManager manager=new LinearLayoutManager((Context) HomeFragment.this.getActivity());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);

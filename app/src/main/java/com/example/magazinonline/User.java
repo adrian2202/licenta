@@ -2,16 +2,18 @@ package com.example.magazinonline;
 
 public class User {
 
-    public String fullName, email;
+    public String Name, email,prenume ,nrtel;
 
     public User()
     {
 
     }
-    public User(String email,String fullName)
+    public User(String Name, String email, String prenume, String nrtel)
     {
-        this.fullName=fullName;
+        this.Name=Name;
         this.email=email;
+        this.prenume=prenume;
+        this.nrtel=nrtel;
 
     }
 

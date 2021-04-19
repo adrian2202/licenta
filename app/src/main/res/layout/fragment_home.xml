@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_bright"
     android:orientation="vertical"
-    tools:context=".HomeFragment"
-    >
+    tools:context=".HomeFragment">
 
 
     <com.denzcoskun.imageslider.ImageSlider
@@ -46,15 +45,14 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="@+id/textView4"
             android:layout_gravity="center"
-            android:layout_marginEnd="-13dp"
-           />
+            />
 
 
         <Button
             android:id="@+id/sendLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="500dp"
+            android:layout_marginTop="100dp"
             android:text="Send email for reset"
             android:textAlignment="center"
             android:textAllCaps="false"

@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.ClipData;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,12 +21,13 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
     private DrawerLayout drawer;
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.drawer_menu2,menu);
         return true;
+
+
     }
 
     @Override
@@ -101,8 +104,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                        new HomeFragment()).commit();
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commit();
+                startActivity(new Intent(this ,LogIn.class ) );;
                 break;
             case R.id.nav_producatori:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

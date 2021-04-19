@@ -20,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterUser extends AppCompatActivity implements View.OnClickListener{
-    private EditText fullNumeEditText, emailEditText,passwordEditText;
+    private EditText NumeEditText, emailEditText,passwordEditText,prenumeEditText,nrTelEditText;
     private TextView Create_new_account, homePageTextView;
     private ProgressBar progressBar;
     private Button button_create_acount;
@@ -30,6 +30,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_user);
+
         mAuth = FirebaseAuth.getInstance();
 
         homePageTextView=(TextView) findViewById(R.id.homePageTextView);
@@ -37,7 +38,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         button_create_acount=(Button) findViewById(R.id.button_create_acount);
         button_create_acount.setOnClickListener(this);
 
-        fullNumeEditText=(EditText) findViewById(R.id.fullNumeEditText);
+        NumeEditText=(EditText) findViewById(R.id.NumeEditText);
+        prenumeEditText=(EditText) findViewById(R.id.prenumeEditText);
+        nrTelEditText=(EditText) findViewById(R.id.nrTelEditText);
         emailEditText=(EditText) findViewById(R.id.emailEditText);
         passwordEditText=(EditText) findViewById(R.id.passwordEditText);
         Create_new_account=(TextView) findViewById(R.id.Create_new_account);
@@ -64,15 +67,29 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
 
     private void button_create_acount() {
          String email=emailEditText.getText().toString().trim();
+         String prenume=prenumeEditText.getText().toString().trim();
          String password=passwordEditText.getText().toString().trim();
-         String fullname=fullNumeEditText.getText().toString().trim();
+         String nrtel=nrTelEditText.getText().toString().trim();
+         String name=NumeEditText.getText().toString().trim();
 
-         if(fullname.isEmpty())
+         if(name.isEmpty())
          {
-             fullNumeEditText.setError("Full name is required!");
-             fullNumeEditText.requestFocus();
+             NumeEditText.setError("Full name is required!");
+             NumeEditText.requestFocus();
              return;
          }
+        if(prenume.isEmpty())
+        {
+            prenumeEditText.setError(" Prenume is required!");
+           prenumeEditText.requestFocus();
+            return;
+        }
+        if(nrtel.isEmpty())
+        {
+            nrTelEditText.setError("Nr phone is required!");
+            nrTelEditText.requestFocus();
+            return;
+        }
          if(email.isEmpty())
          {
              emailEditText.setText("Email is required!");
@@ -105,7 +122,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                      public void onComplete(@NonNull Task<AuthResult> task) {
                          if(task.isSuccessful())
                          {
-                             User user=new User( fullname,email);
+                             User user=new User( name,email,prenume,nrtel);
 
                              FirebaseDatabase.getInstance().getReference("User")
                                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

@@ -7,7 +7,7 @@ public class App {
     String name;
 //    int size;
 
-    public App(int image, String name) {   //mia trebuie pus un int size
+    public App(int image, String name) {   //mai trebuie pus un int size
         this.image = image;
         this.name = name;
 //        this.size=size;
