@@ -8,8 +8,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +41,8 @@ public class EditProfilePicture extends AppCompatActivity {
     private CircleImageView profileImageView;
     private Button closeButton,saveButton;
     private TextView profileChangeBtn;
+    private EditText nameEditPro,prenumeEditPro,emailEditPro,nrTelEditPro;
+
 
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -63,6 +68,13 @@ public class EditProfilePicture extends AppCompatActivity {
 
         closeButton=findViewById(R.id.btnClose);
         saveButton=findViewById(R.id.btnSave);
+
+        nameEditPro=findViewById(R.id.nameEditPro);
+        prenumeEditPro=findViewById(R.id.prenumeEditPro);
+//        emailEditPro=findViewById(R.id.emailEditPro);
+        nrTelEditPro=findViewById(R.id.nrTelEditPro);
+
+
         profileChangeBtn=findViewById(R.id.change_profile_btn);
 
         closeButton.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +88,11 @@ public class EditProfilePicture extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                validateAndSave();
 
-                    uploadProfileimage();
+
+
+
 
             }
         });
@@ -93,13 +108,60 @@ public class EditProfilePicture extends AppCompatActivity {
 
     }
 
+    private void validateAndSave() {
+        if (TextUtils.isEmpty(nameEditPro.getText().toString()))
+        {
+            Toast.makeText(this,"Please Enter your name",Toast.LENGTH_SHORT).show();
+        }
+        else
+        if (TextUtils.isEmpty(prenumeEditPro.getText().toString()))
+        {
+            Toast.makeText(this,"Please Enter your prenume",Toast.LENGTH_SHORT).show();
+        }
+//        else
+//        if (TextUtils.isEmpty(emailEditPro.getText().toString()))
+//        {
+//            Toast.makeText(this,"Please Enter your email",Toast.LENGTH_SHORT).show();
+//        }
+        else
+        if (TextUtils.isEmpty(nrTelEditPro.getText().toString()))
+        {
+            Toast.makeText(this,"Please Enter your nr Tel",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            HashMap<String,Object> userMap=new HashMap<>();
+            userMap.put("Name",nameEditPro.getText().toString());
+            userMap.put("prenume",prenumeEditPro.getText().toString());
+//           userMap.put("email",emailEditPro.getText().toString());
+            userMap.put("nrtel",nrTelEditPro.getText().toString());
+
+            databaseReference.child(mAuth.getCurrentUser().getUid()).updateChildren(userMap);
+            uploadProfileimage();
+
+        }
+
+    }
+
     private void getUserinfo() {
 
         databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0)
-                {
+                {   User userProfile = dataSnapshot.getValue(User.class);
+                    String name=userProfile.Name;
+//                    String email = userProfile.email;
+                    String Prenume = userProfile.prenume;
+                    String telefon = userProfile.nrtel;
+
+
+                    nameEditPro.setText(name);
+                    prenumeEditPro.setText(Prenume);
+//                    emailEditPro.setText(email);
+                    nrTelEditPro.setText(telefon);
+
+
                     if(dataSnapshot.hasChild("image"))
                     {
                         String image= dataSnapshot.child("image").getValue().toString();
@@ -172,10 +234,10 @@ public class EditProfilePicture extends AppCompatActivity {
             });
 
         }
-        else {
-            progressDialog.dismiss();
-            Toast.makeText(this,"Image not selected",Toast.LENGTH_SHORT).show();
-
-        }
+//        else {
+//            progressDialog.dismiss();
+//            Toast.makeText(this,"Image not selected",Toast.LENGTH_SHORT).show();
+//
+//        }
     }
 }
