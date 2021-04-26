@@ -2,13 +2,18 @@ package com.example.magazinonline;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,6 +59,7 @@ public class EditProfilePicture extends AppCompatActivity {
     private StorageReference storageProfilePicsRef;
     private TextView txtName;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +80,9 @@ public class EditProfilePicture extends AppCompatActivity {
         prenumeEditPro=findViewById(R.id.prenumeEditPro);
 //        emailEditPro=findViewById(R.id.emailEditPro);
         nrTelEditPro=findViewById(R.id.nrTelEditPro);
+
+
+
 
 
         profileChangeBtn=findViewById(R.id.change_profile_btn);
@@ -240,4 +250,7 @@ public class EditProfilePicture extends AppCompatActivity {
 //
 //        }
     }
+
+
+
 }

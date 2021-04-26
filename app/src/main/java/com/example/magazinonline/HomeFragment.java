@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment  {
         sendLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), LogIn.class));
+                startActivity(new Intent(getContext(), Maps.class));
 
             }
         });

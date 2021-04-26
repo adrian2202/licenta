@@ -1,17 +1,25 @@
 package com.example.magazinonline;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,7 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity  {
     private DatabaseReference databaseReference;
     private FirebaseUser user;
     private DatabaseReference reference;
@@ -33,7 +41,11 @@ public class ProfileActivity extends AppCompatActivity {
     private ImageView imgView1;
     private FirebaseAuth mAuth;
 
+//    private DrawerLayout drawer;
 
+
+
+  private Toolbar toolbar1;
     //      private Button logout;
     private ImageView log_out;
 
@@ -47,6 +59,26 @@ public class ProfileActivity extends AppCompatActivity {
 
         log_out = (ImageView) findViewById(R.id.imgView4);
         profileImageView = findViewById(R.id.dp);
+
+//         toolbar1 =findViewById(R.id.toolbar1);
+//        setSupportActionBar(toolbar1);
+//
+//        drawer=findViewById(R.id.drawer_layout1);
+//        NavigationView navigationView=findViewById(R.id.nav_view1);
+//        navigationView.setNavigationItemSelectedListener(this);
+//
+//        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar1,
+//                R.string.navigation_drawe_open, R.string.navigation_drawe_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        if(savedInstanceState==null) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container1,
+//                    new HomeFragment()).commit();
+//            navigationView.setCheckedItem(R.id.nav_profile);
+//        }
+
+
         log_out.setOnClickListener(new View.OnClickListener() {
 
 
@@ -158,4 +190,119 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu( Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.drawer_menu2,menu);
+        inflater.inflate(R.menu.drawer_menu,menu);
+        return true;
+
+
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.search:
+                Toast.makeText(this," Search selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.shopping:
+                Toast.makeText(this,"Shopping selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item3:
+                Toast.makeText(this," Item 3 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.item4:
+                Toast.makeText(this," Item 4 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.subitem1:
+                Toast.makeText(this," Subitem 1 selected", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.subitem2:
+                Toast.makeText(this," Subitem 2 selected", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_home);
+//        Toolbar toolbar =findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//
+//        drawer=findViewById(R.id.drawer_layout);
+//        NavigationView navigationView=findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
+//
+//        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar,
+//                R.string.navigation_drawe_open, R.string.navigation_drawe_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        if(savedInstanceState==null) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                    new HomeFragment()).commit();
+//            navigationView.setCheckedItem(R.id.nav_home);
+//        }
+//
+//
+//
+//    }
+
+//    @Override
+//    public void onBackPressed() {
+//        if(drawer.isDrawerOpen(GravityCompat.START))
+//        {
+//            drawer.closeDrawer(GravityCompat.START);
+//        }else {
+//            super.onBackPressed();
+//        }
+//    }
+//
+//    @Override
+//    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId())
+//        {
+//            case R.id.nav_home:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new HomeFragment()).commit();
+//                break;
+//            case R.id.nav_profile:
+//                startActivity(new Intent(this ,LogIn.class ) );;
+//                break;
+//            case R.id.nav_producatori:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new ProducerFragment()).commit();
+//                break;
+//            case R.id.nav_message:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new MessageFragment()).commit();
+//                break;
+//            case R.id.nav_chat:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new ChatFragment()).commit();
+//                break;
+//            case R.id.nav_map:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new MapFragment()).commit();
+//                break;
+//            case R.id.nav_share:
+//                Toast.makeText(this, "Share",Toast.LENGTH_LONG).show();
+//            case R.id.nav_send:
+//                Toast.makeText(this, "Send",Toast.LENGTH_LONG).show();
+//
+//        }
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
+
 }

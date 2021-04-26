@@ -119,9 +119,9 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                         new ChatFragment()).commit();
                 break;
             case R.id.nav_map:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new MapFragment()).commit();
-                break;
+                startActivity(new Intent(this ,Maps.class ));
+
+
             case R.id.nav_share:
                 Toast.makeText(this, "Share",Toast.LENGTH_LONG).show();
             case R.id.nav_send:

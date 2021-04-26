@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.magazinonline">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,12 +14,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagazinOnline">
-        <activity android:name=".EditProfilePicture"></activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAw0lVdlAiPD3PZRuhMqWFFQ3QfjneXhYM"/>
+
+
+        <activity android:name=".Maps"></activity>
+        <activity android:name=".EditProfilePicture" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".EditData" />
         <activity android:name=".LogIn" />
         <activity android:name=".RegisterUser" />
+
+
         <activity
             android:name=".Home"
             android:theme="@style/AppTheme.NoActionBar">
@@ -28,7 +38,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity" android:theme="@style/Base.Theme.AppCompat"/>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
     </application>
 
 </manifest>
