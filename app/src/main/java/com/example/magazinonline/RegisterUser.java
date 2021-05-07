@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -24,6 +25,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
     private TextView Create_new_account, homePageTextView;
     private ProgressBar progressBar;
     private Button button_create_acount;
+    SharedPreferences key;
 
     private FirebaseAuth mAuth;
     @Override
@@ -32,6 +34,8 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_register_user);
 
         mAuth = FirebaseAuth.getInstance();
+
+        key=getSharedPreferences("UID.txt", MODE_PRIVATE);
 
         homePageTextView=(TextView) findViewById(R.id.homePageTextView);
         homePageTextView.setOnClickListener(this);
@@ -123,7 +127,9 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                          if(task.isSuccessful())
                          {
                              User user=new User( name,email,prenume,nrtel);
-
+                             SharedPreferences.Editor editor = key.edit();
+                             editor.putString("UUID",FirebaseAuth.getInstance().getCurrentUser().getUid());
+                             editor.apply();
                              FirebaseDatabase.getInstance().getReference("User")
                                      .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                      .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

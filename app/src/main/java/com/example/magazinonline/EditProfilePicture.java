@@ -159,7 +159,7 @@ public class EditProfilePicture extends AppCompatActivity {
             @Override
             public void onDataChange( DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists() && dataSnapshot.getChildrenCount()>0)
-                {   User userProfile = dataSnapshot.getValue(User.class);
+                {   User userProfile = dataSnapshot.getValue(User.class);// string userProfile = dataSnapshot.getKey();
                     String name=userProfile.Name;
 //                    String email = userProfile.email;
                     String Prenume = userProfile.prenume;

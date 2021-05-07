@@ -14,21 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MagazinOnline">
+        <activity android:name=".IncarcareProduse"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAw0lVdlAiPD3PZRuhMqWFFQ3QfjneXhYM"/>
+            android:value="AIzaSyAw0lVdlAiPD3PZRuhMqWFFQ3QfjneXhYM" />
 
-
-        <activity android:name=".Maps"></activity>
+        <activity android:name=".Maps" />
         <activity android:name=".EditProfilePicture" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".EditData" />
         <activity android:name=".LogIn" />
         <activity android:name=".RegisterUser" />
-
-
         <activity
             android:name=".Home"
             android:theme="@style/AppTheme.NoActionBar">

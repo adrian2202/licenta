@@ -47,7 +47,7 @@ public class ProfileActivity extends AppCompatActivity  {
 
   private Toolbar toolbar1;
     //      private Button logout;
-    private ImageView log_out;
+    private ImageView log_out, productImg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +58,15 @@ public class ProfileActivity extends AppCompatActivity  {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("User");
 
         log_out = (ImageView) findViewById(R.id.imgView4);
+        productImg=(ImageView) findViewById(R.id.imgView3) ;
         profileImageView = findViewById(R.id.dp);
+        productImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, IncarcareProduse.class);
+                startActivity(intent);
+            }
+        });
 
 //         toolbar1 =findViewById(R.id.toolbar1);
 //        setSupportActionBar(toolbar1);

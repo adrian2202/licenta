@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".IncarcareProduse">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/categorii"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/producImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/profile_imag"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="2dp" />
+
+        <EditText
+            android:id="@+id/NumeProdus"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Nume produs"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/DescriereProdus"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Descriere Produs"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/pretProdus"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Pret produs"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/adresaProducator"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="Adresa"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="350dp"
+            android:layout_height="30dp"
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/categorii"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnReturn"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="6dp"
+            android:text="Return"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+
+
+            />
+
+        <Button
+            android:id="@+id/btnSavee"
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginEnd="20dp"
+
+            android:layout_marginRight="6dp"
+            android:text="Save"
+            android:textAlignment="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
