@@ -10,4 +10,12 @@
     <string name="navigation_drawe_open">Open navigation drawer</string>
     <string name="navigation_drawe_close">Close navigation drawer</string>
 
+
+    <string-array name="names">
+        <item>Mancare traditionala</item>
+        <item>Preparate bio</item>
+        <item>Bauturi specifice</item>
+        <item>Fructe si legume</item>
+
+    </string-array>
 </resources>

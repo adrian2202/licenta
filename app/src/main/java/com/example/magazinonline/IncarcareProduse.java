@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -26,10 +27,13 @@ import java.util.UUID;
 public class IncarcareProduse extends AppCompatActivity implements View.OnClickListener {
 
     private EditText NumeProdus, DescriereProdus, pretProdus, adresaProducator;
-    private Spinner spinner1;
+    private Spinner SPinner;
     private Button btnReturn, btnSavee;
     private FirebaseAuth mAuth;
+
     SharedPreferences key;
+    private Object Spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +41,17 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Spinner declaratie
+         Spinner mySpinner= (Spinner)findViewById(R.id.spinner1);
+         ArrayAdapter<String> myAdapter= new ArrayAdapter<String>(IncarcareProduse.this,
+                 android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.names));
+         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         mySpinner.setAdapter(myAdapter);
+
+//key, sa putem lega doua noduri
         key=getSharedPreferences("UID.txt", MODE_PRIVATE);
 
+        SPinner=(Spinner) findViewById(R.id.spinner1);
         NumeProdus = (EditText) findViewById(R.id.NumeProdus);
         DescriereProdus = (EditText) findViewById(R.id.DescriereProdus);
         pretProdus = (EditText) findViewById(R.id.pretProdus);
@@ -69,6 +82,8 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         String descriereProdus = DescriereProdus.getText().toString().trim();
         String PretProdus = pretProdus.getText().toString().trim();
         String AdresaProducator = adresaProducator.getText().toString().trim();
+//        String Categorie=mySpinner.getSelectedItem().toString();
+        String Categorie=SPinner.getSelectedItem().toString().trim();
 
         if (numeProdus.isEmpty()) {
             NumeProdus.setError("Product name is empty");
@@ -91,8 +106,10 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
             adresaProducator.requestFocus();
             return;
         }
+
+        //incarcare in firebase
         String data = key.getString("UUID","");
-    Product p=new Product(numeProdus,descriereProdus,PretProdus,AdresaProducator,data);
+    Product p=new Product(numeProdus,descriereProdus,PretProdus,AdresaProducator,data,Categorie);
         FirebaseDatabase.getInstance().getReference("Product").child(UUID.randomUUID().toString()).setValue(p);
 
 

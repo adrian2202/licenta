@@ -17,15 +17,14 @@
         android:orientation="vertical">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/producImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:src="@drawable/profile_imag"
-            app:civ_border_color="@color/colorAccent"
-            app:civ_border_width="2dp" />
+            />
 
         <EditText
             android:id="@+id/NumeProdus"
