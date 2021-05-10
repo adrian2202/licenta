@@ -46,6 +46,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             holder.itemView.setOnClickListener(v -> {
 //            Log.d("EMAIL=", worker.getEmail());
                 Intent intent = new Intent(context2,ProductInfoFirebase.class);
+
                 context.startActivity(intent);
             });
         }
