@@ -19,6 +19,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 public class HomeFragment extends Fragment  {
    Button sendLogin;
@@ -38,7 +39,7 @@ public class HomeFragment extends Fragment  {
         sendLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), Maps.class));
+                startActivity(new Intent(getContext(), ProductInfoFirebase.class));
 
             }
         });
@@ -58,7 +59,7 @@ public class HomeFragment extends Fragment  {
         LinearLayoutManager manager=new LinearLayoutManager((Context) HomeFragment.this.getActivity());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);
-        CustomAdapter adapter = new CustomAdapter(HomeFragment.this, appList);
+        CustomAdapter adapter = new CustomAdapter( HomeFragment.this, appList);
         recyclerView.setAdapter(adapter);
 
 
