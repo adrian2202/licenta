@@ -106,7 +106,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         {
             CropImage.ActivityResult result=CropImage.getActivityResult(data);
             imgUri =result.getUri();
-
            productImage.setImageURI(imgUri);
         }
         else

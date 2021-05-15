@@ -28,7 +28,8 @@
             android:text="Nume produs"
             android:textColor="#000"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_production"/>
 
         <TextView
             android:id="@+id/descriptionProdus"
@@ -40,7 +41,8 @@
             android:text="Descriere Produs"
             android:textColor="#000"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic__post_descriere"/>
 
         <TextView
             android:id="@+id/priceProduct"
@@ -52,7 +54,8 @@
             android:text="Pret produs"
             android:textColor="#000"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_money"/>
 
         <TextView
             android:id="@+id/locationProduct"
@@ -64,7 +67,8 @@
             android:text="Adresa"
             android:textColor="#000"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_location"/>
 
         <TextView
             android:id="@+id/catProduct"
@@ -76,7 +80,8 @@
             android:text="Categorie produs"
             android:textColor="#000"
             android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableLeft="@drawable/ic_list"/>
 
 
     </RelativeLayout>

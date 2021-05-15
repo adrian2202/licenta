@@ -3,6 +3,7 @@ package com.example.magazinonline;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.hotspot2.pps.HomeSp;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,33 +29,40 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item,parent,false);
-        context2=parent.getContext();
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item, parent, false);
+        context2 = parent.getContext();
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        App app=apps.get(position);
+        App app = apps.get(position);
         holder.mName.setText(app.getName());
         holder.mImage.setImageResource(app.getImage());
 //        holder.mSize.setText(app.getSize());
 
-        if(position==0)
-        {
-            holder.itemView.setOnClickListener(v -> {
-//            Log.d("EMAIL=", worker.getEmail());
-                Intent intent = new Intent(context2,ProductInfoFirebase.class);
 
-                context.startActivity(intent);
+
+
+//     asocierea imaginilor cu lista de produse
+        if (position == 0) {
+            holder.itemView.setOnClickListener(v -> {
+                String value="Preparate bio";
+                Intent intent1= new Intent(context2,ProductInfoFirebase.class);
+                intent1.putExtra("position",value);
+                context.startActivity(intent1);
+
+
+                context.startActivity(intent1);
+
             });
         }
 
 
-
-
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -63,12 +71,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView mName;
-//        TextView mSize;
+        //        TextView mSize;
         ImageView mImage;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mName=itemView.findViewById(R.id.name);
-            mImage=itemView.findViewById(R.id.image);
+            mName = itemView.findViewById(R.id.name);
+            mImage = itemView.findViewById(R.id.image);
 //            mSize=itemView.findViewById(R.id.size);
 
 

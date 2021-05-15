@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.PrimitiveIterator;
 
-public class HomeFragment extends Fragment  {
+public class  HomeFragment extends Fragment  {
    Button sendLogin;
    RecyclerView recyclerView;
 //   ArrayList<MainModel>mainModels;
