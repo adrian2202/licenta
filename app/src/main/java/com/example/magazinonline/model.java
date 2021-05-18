@@ -63,4 +63,6 @@ public class model {
     public void setCategorie(String categorie) {
         Categorie = categorie;
     }
+
+
 }

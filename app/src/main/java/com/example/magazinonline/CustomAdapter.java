@@ -54,10 +54,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 context.startActivity(intent1);
 
 
-                context.startActivity(intent1);
 
-            });
-        }
+            });}
+
 
 
     }
