@@ -90,10 +90,17 @@ public class ProductInfoFirebase extends AppCompatActivity {
 //        dbProduct.addValueEventListener(valueEventListener);
 //        dbProduct.addListenerForSingleValueEvent(valueEventListener);
 
-        Query query = FirebaseDatabase.getInstance().getReference("Product")
+          //primim pozitia lui value
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String value = extras.getString("position");
+            //The key argument here must match that used in the other activity
+            Log.d(value,"position");
+
+            Query query = FirebaseDatabase.getInstance().getReference("Product")
                 .orderByChild("Categorie")
-                .equalTo("Mancare traditionala");
-        query.addListenerForSingleValueEvent(valueEventListener);
+                .equalTo(value);
+        query.addListenerForSingleValueEvent(valueEventListener);}
 
     }
     ValueEventListener valueEventListener = new ValueEventListener() {
