@@ -8,7 +8,8 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/shopping"
-        android:icon="@drawable/ic_shopping"
+        android:icon="@drawable/ic_shopping_cart"
+        android:iconTint="#fff"
         android:title="Shopping"
         app:showAsAction="ifRoom" />
 

@@ -1,19 +1,37 @@
 package com.example.magazinonline;
 
-public class model {
-    String NumeProdus,descriereProdus,PretProdus,AdresaProducator, image,Categorie;
-    model()
-    {
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Model implements Serializable {
+    private String idProdus;
+    private String NumeProdus;
+    private String descriereProdus;
+    private String PretProdus;
+    private String AdresaProducator;
+    private String image;
+    private String Categorie;
+    private String data;
+    private int cantitate = 1;
+
+    public Model() {
 
     }
 
-    public model(String numeProdus, String descriereProdus, String pretProdus, String adresaProducator, String image, String categorie) {
+    public Model(String idProdus, String numeProdus, String descriereProdus, String pretProdus, String adresaProducator, String data, String image, String categorie) {
+        this.idProdus = idProdus;
         NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
         PretProdus = pretProdus;
         AdresaProducator = adresaProducator;
+        this.data = data;
         this.image = image;
         Categorie = categorie;
+    }
+
+    public String getIdProdus() {
+        return idProdus;
     }
 
     public String getNumeProdus() {
@@ -64,5 +82,31 @@ public class model {
         Categorie = categorie;
     }
 
+    public String getData() {
+        return data;
+    }
 
+    public int getCantitate() {
+        return cantitate;
+    }
+
+    public void setCantitate(int cantitate) {
+        this.cantitate = cantitate;
+    }
+
+    @Override
+    @NonNull
+    public String toString() {
+        return "model{" +
+                "idProdus='" + idProdus + '\'' +
+                ", NumeProdus='" + NumeProdus + '\'' +
+                ", descriereProdus='" + descriereProdus + '\'' +
+                ", PretProdus='" + PretProdus + '\'' +
+                ", AdresaProducator='" + AdresaProducator + '\'' +
+                ", image='" + image + '\'' +
+                ", Categorie='" + Categorie + '\'' +
+                ", data='" + data + '\'' +
+                ", cantitate=" + cantitate +
+                '}';
+    }
 }

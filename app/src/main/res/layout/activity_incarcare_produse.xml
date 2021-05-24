@@ -1,122 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IncarcareProduse">
 
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:id="@+id/categorii"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="vertical">
-
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8">
 
         <ImageView
             android:id="@+id/productImage"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:layout_marginBottom="5sp"
             android:src="@drawable/profile_imag"
-            />
+            app:layout_constraintBottom_toTopOf="@id/uploadPhotos"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".5" />
+
         <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/uploadPhotos"
-            android:layout_below="@+id/profile_image"
-            android:text="upload photos"
-            android:textSize="16sp"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
+            android:text="Upload photos"
+            android:textAlignment="center"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_centerHorizontal="true"
-
-            />
+            app:layout_constraintBottom_toTopOf="@id/NumeProdus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/productImage" />
 
         <EditText
             android:id="@+id/NumeProdus"
-            android:layout_width="350dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
             android:hint="Nume produs"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/DescriereProdus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/uploadPhotos" />
+
         <EditText
             android:id="@+id/DescriereProdus"
-            android:layout_width="350dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
             android:hint="Descriere Produs"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/pretProdus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/NumeProdus" />
+
         <EditText
             android:id="@+id/pretProdus"
-            android:layout_width="350dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
             android:hint="Pret produs"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/adresaProducator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/DescriereProdus" />
 
         <EditText
             android:id="@+id/adresaProducator"
-            android:layout_width="350dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="5sp"
             android:hint="Adresa"
             android:textColor="#000000"
-            android:textSize="20sp" />
-
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/spinner1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pretProdus" />
 
         <Spinner
             android:id="@+id/spinner1"
-            android:layout_width="350dp"
-            android:layout_height="30dp"
-
-            />
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/categorii"
-        android:layout_marginTop="13dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnReturn"
-            android:layout_width="132dp"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="6dp"
-            android:text="Return"
-            android:textColor="#ffffff"
-            android:textStyle="bold"
+            android:layout_marginVertical="5sp"
+            app:layout_constraintBottom_toTopOf="@id/incarcare_produse_buttons_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/adresaProducator" />
 
-
-            />
-
-        <Button
-            android:id="@+id/btnSavee"
-            android:layout_width="132dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/incarcare_produse_buttons_layout"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spinner1">
 
-            android:layout_marginRight="6dp"
-            android:text="Save"
-            android:textAlignment="center"
-            android:textColor="#ffffff"
-            android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnReturn"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10sp"
+                android:padding="10sp"
+                android:text="Return"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnSavee"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btnSavee"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:padding="10sp"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnReturn"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

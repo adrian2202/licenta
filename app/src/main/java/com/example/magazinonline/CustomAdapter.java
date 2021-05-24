@@ -2,9 +2,6 @@ package com.example.magazinonline;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.wifi.hotspot2.pps.HomeSp;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,72 +33,55 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
         App app = apps.get(position);
         holder.mName.setText(app.getName());
         holder.mImage.setImageResource(app.getImage());
-//        holder.mSize.setText(app.getSize());
-
-
-
 
 //     asocierea imaginilor cu lista de produse
         if (position == 0) {
             holder.itemView.setOnClickListener(v -> {
-                String value="Mancare traditionala";//trimitem pozitia lor
-                Intent intent1= new Intent(context2,ProductInfoFirebase.class);
-                intent1.putExtra("position",value);
+                String value = "Mancare traditionala";//trimitem pozitia lor
+                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
+                intent1.putExtra("position", value);
                 context.startActivity(intent1);
-
-            });}
-        if (position == 1) {
+            });
+        } else if (position == 1) {
             holder.itemView.setOnClickListener(v -> {
-                String value="Preparate bio";
-                Intent intent1= new Intent(context2,ProductInfoFirebase.class);
-                intent1.putExtra("position",value);
+                String value = "Preparate bio";
+                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
+                intent1.putExtra("position", value);
                 context.startActivity(intent1);
-
-            });}
-        if (position == 2) {
+            });
+        } else if (position == 2) {
             holder.itemView.setOnClickListener(v -> {
-                String value="Bauturi specifice";
-                Intent intent1= new Intent(context2,ProductInfoFirebase.class);
-                intent1.putExtra("position",value);
+                String value = "Bauturi specifice";
+                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
+                intent1.putExtra("position", value);
                 context.startActivity(intent1);
-
-            });}
-
-        if (position == 3) {
+            });
+        } else if (position == 3) {
             holder.itemView.setOnClickListener(v -> {
-                String value="Fructe si legume";
-                Intent intent1= new Intent(context2,ProductInfoFirebase.class);
-                intent1.putExtra("position",value);
+                String value = "Fructe si legume";
+                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
+                intent1.putExtra("position", value);
                 context.startActivity(intent1);
-
-            });}
-
-
+            });
+        }
     }
-
-
 
     @Override
     public int getItemCount() {
         return apps.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView mName;
-        //        TextView mSize;
-        ImageView mImage;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private TextView mName;
+        private ImageView mImage;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mName = itemView.findViewById(R.id.name);
             mImage = itemView.findViewById(R.id.image);
-//            mSize=itemView.findViewById(R.id.size);
-
-
         }
     }
 }
