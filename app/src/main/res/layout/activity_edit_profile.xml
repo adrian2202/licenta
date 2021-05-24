@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#098AD6"
+    tools:context=".EditProfile">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent=".8">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            android:layout_width="0sp"
+            android:layout_height="0sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10sp"
+            android:src="@drawable/profile_imag"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="2sp"
+            app:layout_constraintBottom_toTopOf="@id/change_profile_btn"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent=".5" />
+
+        <TextView
+            android:id="@+id/change_profile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10sp"
+            android:text="Change Profile"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/nameEditPro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+        <EditText
+            android:id="@+id/nameEditPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/change_profile_btn"
+            android:layout_marginVertical="10sp"
+            android:drawableStart="@drawable/ic_person_name_profile_"
+            android:drawablePadding="10sp"
+            android:ems="15"
+            android:hint="Name"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/prenumeEditPro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change_profile_btn" />
+
+        <EditText
+            android:id="@+id/prenumeEditPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/nameEditPro"
+            android:layout_marginVertical="10sp"
+            android:drawableStart="@drawable/ic_person_name_profile_"
+            android:drawablePadding="10sp"
+            android:ems="15"
+            android:hint="Prenume"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/nrTelEditPro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nameEditPro" />
+        <!--    <EditText-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:id="@+id/emailEditPro"-->
+        <!--        android:layout_below="@+id/prenumeEditPro"-->
+        <!--        android:layout_marginTop="17sp"-->
+        <!--        android:textSize="17sp"-->
+        <!--        android:hint="Email"-->
+
+        <!--        />-->
+        <EditText
+            android:id="@+id/nrTelEditPro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/prenumeEditPro"
+            android:layout_marginVertical="10sp"
+            android:drawableStart="@drawable/ic_lphone_profile"
+            android:drawablePadding="10sp"
+            android:ems="15"
+            android:hint="Nr telefon"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/edit_profile_buttons_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/prenumeEditPro" />
+
+        <LinearLayout
+            android:id="@+id/edit_profile_buttons_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nrTelEditPro">
+
+            <Button
+                android:id="@+id/btnClose"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0sp"
+                android:layout_marginEnd="10sp"
+                android:layout_weight="1"
+                android:padding="15sp"
+                android:text="Close"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:layout_marginEnd="0sp"
+                android:layout_weight="1"
+                android:padding="15sp"
+                android:text="Save"
+                android:textAlignment="center"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
