@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#C0C0C0"
     android:orientation="vertical"
-    tools:context=".ProductInfoFirebase">
+    tools:context=".MainPart.Activities.ProductInfoFirebase">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/product_info_firebase_top_bar"

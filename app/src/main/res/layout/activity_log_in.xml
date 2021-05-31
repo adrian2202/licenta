@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".LogIn">
+    tools:context=".AuthenticationPart.LogIn">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/log_in_center_layout"

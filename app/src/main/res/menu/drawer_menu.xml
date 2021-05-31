@@ -7,40 +7,26 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home" />
+
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
             android:title="Profile" />
+
         <item
             android:id="@+id/nav_producatori"
             android:icon="@drawable/ic_producatori"
             android:title="Producer" />
+
         <item
-            android:id="@+id/nav_message"
-            android:icon="@drawable/ic_message"
-            android:title="Message" />
-        <item
-            android:id="@+id/nav_chat"
-            android:icon="@drawable/ic_chat"
-            android:title="Chat" />
+            android:id="@+id/nav_my_products"
+            android:icon="@drawable/ic_edit"
+            android:title="Produsele mele" />
+
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/ic_map"
             android:title="Map" />
     </group>
-    <item android:title="Comunicate">
-        <menu>
-
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_send"
-                android:title="Send" />
-
-        </menu>
-    </item>
 
 </menu>

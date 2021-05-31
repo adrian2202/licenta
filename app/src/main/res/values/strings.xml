@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MagazinOnline</string>
+    <string name="app_name">Traditional Food</string>
     <string name="vanzator">Vanzator</string>
     <string name="client">Client</string>
     <string name="creeaza">Creeaza</string>
@@ -24,4 +24,6 @@
         <item>Livrare la domiciliu</item>
         <item>Ridicare personala</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

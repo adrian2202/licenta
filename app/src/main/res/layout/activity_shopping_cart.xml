@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShoppingCart">
+    tools:context=".MainPart.Activities.ShoppingCart">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/shopping_cart_top_bar"
@@ -53,11 +53,27 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0sp"
-            android:layout_height="wrap_content"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent=".9">
+
+            <TextView
+                android:id="@+id/noProductsInShoppingCartTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cosul de cumparaturi este gol"
+                android:textAlignment="center"
+                android:textColor="@color/purple_500"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/shopping_cart_recycler_view"
@@ -112,11 +128,12 @@
             android:id="@+id/shopping_cart_bottom_layout_pay_methods"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:entries="@array/pay_methods"
             android:layout_marginVertical="10sp"
+            android:entries="@array/pay_methods"
+            android:paddingVertical="10sp"
+            app:layout_constraintBottom_toTopOf="@id/shopping_cart_bottom_layout_pay_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/shopping_cart_bottom_layout_pay_button"
             app:layout_constraintTop_toBottomOf="@id/shopping_cart_bottom_layout_total_text"
             app:layout_constraintWidth_percent=".75" />
 

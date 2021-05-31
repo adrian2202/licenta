@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
+    android:layout_marginHorizontal="10sp"
     android:orientation="vertical">
 
     <ImageView
@@ -19,15 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Name"
-        android:textColor="#000"
-        android:textSize="16sp" />
-    <!--    <TextView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:id="@+id/size"-->
-    <!--        android:text="38mb"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:gravity="center"/>-->
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
