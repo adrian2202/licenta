@@ -111,29 +111,28 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
         String password = Password.getText().toString().trim();
 
         if (email.isEmpty()) {
-            Email.setError("Email is required!");
+            Email.setError(getResources().getString(R.string.email_required));
             Email.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            Email.setError("Please enter a valid email !");
+            Email.setError(getResources().getString(R.string.please_provide_valid_email));
             Email.requestFocus();
             return;
         }
         if (password.isEmpty()) {
-            Password.setError("Password is required");
+            Password.setError(getResources().getString(R.string.password_required));
             Password.requestFocus();
             return;
         }
         if (password.length() < 6) {
-            Password.setError("Min password in 6 characters!");
+            Password.setError(getResources().getString(R.string.password_min_length));
             Password.requestFocus();
             return;
         }
         ProgressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                //Intent intent = getIntent();
                 String productDetails = intentExtras.getStringExtra("product_details");
                 String currentUserConnected = intentExtras.getStringExtra("currentUser");
 
@@ -147,7 +146,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener {
                 }
             } else {
                 Toast.makeText(LogIn.this,
-                        "Failed to login!Please check your credentials",
+                        getResources().getString(R.string.wrong_credentials),
                         Toast.LENGTH_LONG).show();
             }
         });

@@ -2,7 +2,9 @@ package com.example.magazinonline.Classes;
 
 import androidx.annotation.NonNull;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private String idProdus;
     private String idProducator;
     private String NumeProdus;

@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
-            android:text="Change Profile"
+            android:text="@string/change_profile"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -56,7 +56,7 @@
             android:drawableStart="@drawable/ic_person_name_profile_"
             android:drawablePadding="10sp"
             android:ems="15"
-            android:hint="Name"
+            android:hint="@string/first_name"
             android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/prenumeEditPro"
@@ -73,23 +73,14 @@
             android:drawableStart="@drawable/ic_person_name_profile_"
             android:drawablePadding="10sp"
             android:ems="15"
-            android:hint="Prenume"
+            android:hint="@string/last_name"
             android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/nrTelEditPro"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/nameEditPro" />
-        <!--    <EditText-->
-        <!--        android:layout_width="match_parent"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        android:id="@+id/emailEditPro"-->
-        <!--        android:layout_below="@+id/prenumeEditPro"-->
-        <!--        android:layout_marginTop="17sp"-->
-        <!--        android:textSize="17sp"-->
-        <!--        android:hint="Email"-->
 
-        <!--        />-->
         <EditText
             android:id="@+id/nrTelEditPro"
             android:layout_width="match_parent"
@@ -99,7 +90,7 @@
             android:drawableStart="@drawable/ic_lphone_profile"
             android:drawablePadding="10sp"
             android:ems="15"
-            android:hint="Nr telefon"
+            android:hint="@string/phone"
             android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/edit_profile_buttons_layout"
@@ -126,7 +117,7 @@
                 android:layout_marginEnd="10sp"
                 android:layout_weight="1"
                 android:padding="15sp"
-                android:text="Close"
+                android:text="@string/close"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -139,7 +130,7 @@
                 android:layout_marginEnd="0sp"
                 android:layout_weight="1"
                 android:padding="15sp"
-                android:text="Save"
+                android:text="@string/save"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="20sp"

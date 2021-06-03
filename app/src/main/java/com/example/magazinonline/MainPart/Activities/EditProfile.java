@@ -56,7 +56,7 @@ public class EditProfile extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
         setVariables();
         setOnClickListeners();
-        getUserinfo();
+        getUserInfo();
     }
 
     @Override
@@ -90,15 +90,15 @@ public class EditProfile extends AppCompatActivity {
     private void validateAndSave() {
         if (TextUtils.isEmpty(nameEditPro.getText().toString()))
             Toast.makeText(this,
-                    "Please Enter your name",
+                    getResources().getString(R.string.please_enter_last_name),
                     Toast.LENGTH_SHORT).show();
         else if (TextUtils.isEmpty(prenumeEditPro.getText().toString()))
             Toast.makeText(this,
-                    "Please Enter your prenume",
+                    getResources().getString(R.string.please_enter_first_name),
                     Toast.LENGTH_SHORT).show();
         else if (TextUtils.isEmpty(nrTelEditPro.getText().toString()))
             Toast.makeText(this,
-                    "Please Enter your nr Tel",
+                    getResources().getString(R.string.please_enter_phone),
                     Toast.LENGTH_SHORT).show();
         else {
             HashMap<String, Object> userMap = new HashMap<>();
@@ -109,11 +109,11 @@ public class EditProfile extends AppCompatActivity {
             if (mAuth.getCurrentUser() != null)
                 databaseReference.child(mAuth.getCurrentUser().getUid()).updateChildren(userMap);
 
-            uploadProfileimage();
+            uploadProfileImage();
         }
     }
 
-    private void getUserinfo() {
+    private void getUserInfo() {
         if (mAuth.getCurrentUser() != null)
             databaseReference.child(mAuth.getCurrentUser().getUid())
                     .addValueEventListener(new ValueEventListener() {
@@ -158,15 +158,17 @@ public class EditProfile extends AppCompatActivity {
 
             profileImageView.setImageURI(imageUri);
         } else {
-            Toast.makeText(this, "Error, Try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,
+                    getResources().getString(R.string.error_try_again),
+                    Toast.LENGTH_LONG).show();
         }
     }
 
-    private void uploadProfileimage() {
+    private void uploadProfileImage() {
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Set your profile");
-        progressDialog.setMessage("Please wait, while we are setting your data ");
+        progressDialog.setTitle(getResources().getString(R.string.set_your_profile));
+        progressDialog.setMessage(getResources().getString(R.string.please_wait_setting_date));
         progressDialog.show();
 
         if (imageUri != null && mAuth.getCurrentUser() != null) {

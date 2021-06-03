@@ -2,7 +2,9 @@ package com.example.magazinonline.Classes;
 
 import androidx.annotation.NonNull;
 
-public class MyTime {
+import java.io.Serializable;
+
+public class MyTime implements Serializable {
     private int year;
     private int month;
     private String monthName;

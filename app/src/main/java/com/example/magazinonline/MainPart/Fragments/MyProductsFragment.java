@@ -1,6 +1,7 @@
 package com.example.magazinonline.MainPart.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,7 +82,7 @@ public class MyProductsFragment extends Fragment {
                 if (!productList.isEmpty())
                     productList.clear();
 
-                if (snapshot.exists() && snapshot.hasChild("Product"))
+                if (snapshot.exists() && snapshot.hasChild("Product") && currentUser != null)
                     if (snapshot.child("Product").hasChildren())
                         for (DataSnapshot product : snapshot.child("Product").getChildren())
                             if (product.hasChild("idProducator") &&
@@ -89,8 +90,24 @@ public class MyProductsFragment extends Fragment {
                                             .equals(currentUser.getUid())) {
                                 Product myProduct = product.getValue(Product.class);
 
-                                if (myProduct != null)
+                                if (myProduct != null) {
+                                    if (product.hasChild("LocatieProducator") &&
+                                            product.child("LocatieProducator")
+                                                    .hasChild("Latitudine"))
+                                        myProduct.setLatitudineProducator(Double
+                                                .parseDouble(String.valueOf(product
+                                                        .child("LocatieProducator")
+                                                        .child("Latitudine").getValue())));
+                                    if (product.hasChild("LocatieProducator") &&
+                                            product.child("LocatieProducator").
+                                                    hasChild("Longitudine"))
+                                        myProduct.setLongitudineProducator(Double.
+                                                parseDouble(String.valueOf(product
+                                                        .child("LocatieProducator")
+                                                        .child("Longitudine").getValue())));
+
                                     productList.add(myProduct);
+                                }
                             }
 
                 adapter.notifyDataSetChanged();

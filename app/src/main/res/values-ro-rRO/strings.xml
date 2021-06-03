@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Traditional Food</string>
+    <string name="client">Client</string>
+    <string name="create">Creați</string>
+    <string name="create_new_account">Creați un cont nou</string>
+    <string name="email">Email</string>
+    <string name="first_name">Prenume</string>
+    <string name="last_name">Nume</string>
+    <string name="login">Autentificare</string>
+    <string name="password">Parolă</string>
+    <string name="phone">Telefon</string>
+    <string name="seller">Vânzător</string>
+    <string name="name">Nume</string>
+    <string name="address">Adresă</string>
+    <string name="add_to_cart">Adaugă în coș</string>
+    <string name="cancel">Anulare</string>
+    <string name="close">Închidere</string>
+    <string name="delete_account">Ștergere cont</string>
+    <string name="edit">Modificare</string>
+    <string name="edit_profile">Modificare profil</string>
+    <string name="home">Acasă</string>
+    <string name="forgot_password">Am uitat parola</string>
+    <string name="map">Hartă</string>
+    <string name="my_cart">Coșul meu</string>
+    <string name="my_products">Produsele mele</string>
+    <string name="add_product">Adaugă produsul</string>
+    <string name="new_password">Parolă nouă</string>
+    <string name="old_password">Parolă veche</string>
+    <string name="pay">Plătiți</string>
+    <string name="producer_information">Informații producător</string>
+    <string name="producers">Producători</string>
+    <string name="product_category">Categorie produs</string>
+    <string name="product_description">Descriere produs</string>
+    <string name="product_information">Informații produs</string>
+    <string name="product_name">Nume produs</string>
+    <string name="product_price">Preț produs</string>
+    <string name="no_existing_products">Nu există produse de afișat</string>
+    <string name="logout">Deconectare</string>
+    <string name="change_location">Modificare locație</string>
+    <string name="change_profile">Modificare profil</string>
+    <string name="profile">Profil</string>
+    <string name="quantity">Cantitate</string>
+    <string name="reset_password">Resetare parolă</string>
+    <string name="save">Salvare</string>
+    <string name="shopping_cart">Coș de cumpărături</string>
+    <string name="total">Total</string>
+    <string name="upload_photo">Încărcare imagine</string>
+    <string name="shopping_cart_is_empty">Coșul dumneavoastră este gol</string>
+    <string name="send_email_for_reset">Trimitere email pentru resetare</string>
+    <string name="username">Utilizator</string>
+
+    <string-array name="names">
+        <item>Mancare traditionala</item>
+        <item>Preparate bio</item>
+        <item>Bauturi specifice</item>
+        <item>Fructe si legume</item>
+    </string-array>
+
+    <string-array name="pay_methods">
+        <item>Livrare la domiciliu</item>
+        <item>Ridicare personala</item>
+    </string-array>
+    <string name="good_appetite">Poftă bună!</string>
+    <string name="first_name_required">Prenumele este obligatoriu</string>
+    <string name="last_name_required">Numele este obligatoriu</string>
+    <string name="password_required">Parola este obligatorie</string>
+    <string name="password_min_length">Parola trebuie să aibă cel puțin 6 caractere</string>
+    <string name="phone_required">Telefonul este obligatoriu</string>
+    <string name="please_enter_first_name">Vă rugăm să vă introduceți prenumele</string>
+    <string name="please_enter_last_name">Vă rugăm să vă introduceți numele</string>
+    <string name="please_enter_phone">Vă rugăm să vă introduceți telefonul</string>
+    <string name="please_provide_valid_email">Vă rugăm să vă introduceți un email valid</string>
+    <string name="user_registered">Utilizatorul a fost înregistrat cu succes</string>
+    <string name="description_required">Descrierea este obligatorie</string>
+    <string name="email_required">Email-ul este obligatoriu</string>
+    <string name="error_try_again">Eroare, vă rugăm să încercați din nou!</string>
+    <string name="address_required">Adresa este obligatorie</string>
+    <string name="product_name_empty">Numele produsului este gol</string>
+    <string name="product_successfully_modified">Produsul a fost modificat cu succes</string>
+    <string name="registration_failed">Înregistrarea a eșuat! Vă rugăm să încercați din nou</string>
+    <string name="select_picture">Selectați imaginea</string>
+    <string name="price_required">Prețul este obligatoriu</string>
+    <string name="please_wait_setting_date">Vă rugăm să așteptați cât timp vă setăm datele</string>
+    <string name="product_added_successfully">Produsul a fost adăugat cu succes</string>
+    <string name="product_already_in_cart">Produsul se află deja în coș</string>
+    <string name="product_added_to_cart">Produsul a fost adăugat în coș</string>
+    <string name="set_your_profile">Setați-vă profilul</string>
+    <string name="check_email_reset_password">Verificați-vă email-ul pentru a vă reseta parola</string>
+    <string name="try_again_something_happened">Încercați din nou! Ceva s-a întâmplat</string>
+    <string name="wrong_credentials">Acreditări greșite</string>
+</resources>

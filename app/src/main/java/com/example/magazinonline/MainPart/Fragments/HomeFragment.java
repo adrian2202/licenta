@@ -30,7 +30,8 @@ public class HomeFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         setVariables(v);
@@ -49,7 +50,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRecyclerView() {
-        LinearLayoutManager manager = new LinearLayoutManager((Context) HomeFragment.this.getActivity());
+        LinearLayoutManager manager = new LinearLayoutManager(HomeFragment.this.getActivity());
 
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(manager);

@@ -80,37 +80,37 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
         String name = NumeEditText.getText().toString().trim();
 
         if (name.isEmpty()) {
-            NumeEditText.setError("Full name is required!");
+            NumeEditText.setError(getResources().getString(R.string.last_name_required));
             NumeEditText.requestFocus();
             return;
         }
         if (prenume.isEmpty()) {
-            prenumeEditText.setError(" Prenume is required!");
+            prenumeEditText.setError(getResources().getString(R.string.first_name_required));
             prenumeEditText.requestFocus();
             return;
         }
         if (nrtel.isEmpty()) {
-            nrTelEditText.setError("Nr phone is required!");
+            nrTelEditText.setError(getResources().getString(R.string.phone_required));
             nrTelEditText.requestFocus();
             return;
         }
         if (email.isEmpty()) {
-            emailEditText.setText("Email is required!");
+            emailEditText.setText(getResources().getString(R.string.email_required));
             emailEditText.requestFocus();
             return;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText.setError("Please provide valid email!");
+            emailEditText.setError(getResources().getString(R.string.please_provide_valid_email));
             emailEditText.requestFocus();
             return;
         }
         if (password.isEmpty()) {
-            passwordEditText.setError("Password is required!");
+            passwordEditText.setError(getResources().getString(R.string.password_required));
             passwordEditText.requestFocus();
             return;
         }
         if (password.length() < 6) {
-            passwordEditText.setError("Min password length should be 6 characters !");
+            passwordEditText.setError(getResources().getString(R.string.password_min_length));
             passwordEditText.requestFocus();
             return;
         }
@@ -131,12 +131,12 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                                     .setValue(user).addOnCompleteListener(task1 -> {
                                 if (task1.isSuccessful()) {
                                     Toast.makeText(RegisterUser.this,
-                                            "User has been successfully registered",
+                                            getResources().getString(R.string.user_registered),
                                             Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.VISIBLE);
                                 } else
                                     Toast.makeText(RegisterUser.this,
-                                            "Failed to register! Try again!",
+                                            getResources().getString(R.string.registration_failed),
                                             Toast.LENGTH_LONG).show();
                                 progressBar.setVisibility(View.GONE);
 
@@ -144,7 +144,7 @@ public class RegisterUser extends AppCompatActivity implements View.OnClickListe
                         }
                     } else {
                         Toast.makeText(RegisterUser.this,
-                                "Failed to register! Try again!",
+                                getResources().getString(R.string.registration_failed),
                                 Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }

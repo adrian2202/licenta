@@ -202,7 +202,25 @@ public class ProductInfoFirebase extends AppCompatActivity {
 
     // metoda pentru setarea titlului activitatii
     private void setPageTitle(String title) {
-        pageTitle.setText(title);
+        String translatedTitle = "";
+        String[] categoriesTranslated = getResources().getStringArray(R.array.names);
+
+        switch (title){
+            case "Mancare traditionala":
+                translatedTitle = categoriesTranslated[0];
+                break;
+            case "Preparate bio":
+                translatedTitle = categoriesTranslated[1];
+                break;
+            case "Bauturi specifice":
+                translatedTitle = categoriesTranslated[2];
+                break;
+            case "Fructe si legume":
+                translatedTitle = categoriesTranslated[3];
+                break;
+        }
+
+        pageTitle.setText(translatedTitle);
     }
 
     // metoda pentru afisarea produselor in recyclerview

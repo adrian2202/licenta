@@ -21,7 +21,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10sp"
-            android:text="MagazinOnline"
+            android:text="@string/app_name"
             android:textAlignment="center"
             android:textColor="#4689C8"
             android:textSize="30sp"
@@ -41,56 +41,56 @@
             android:textColor="#4689C8"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/NumeEditText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/homePageTextView" />
-
-        <EditText
-            android:id="@+id/NumeEditText"
-            android:layout_width="0sp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10sp"
-            android:hint="Nume familie"
-            android:textColor="#000000"
-            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/prenumeEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Create_new_account" />
+            app:layout_constraintTop_toBottomOf="@id/homePageTextView" />
 
         <EditText
             android:id="@+id/prenumeEditText"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
-            android:hint="Prenume"
+            android:hint="@string/first_name"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@id/NumeEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Create_new_account" />
+
+        <EditText
+            android:id="@+id/NumeEditText"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10sp"
+            android:hint="@string/last_name"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/nrTelEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NumeEditText" />
+            app:layout_constraintTop_toBottomOf="@id/prenumeEditText" />
 
         <EditText
             android:id="@+id/nrTelEditText"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
-            android:hint="Nr telefon"
+            android:hint="@string/phone"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/emailEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/prenumeEditText" />
+            app:layout_constraintTop_toBottomOf="@id/NumeEditText" />
 
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
-            android:hint="Email"
+            android:hint="@string/email"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/passwordEditText"
@@ -103,7 +103,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10sp"
-            android:hint="Password"
+            android:hint="@string/password"
             android:textColor="#000000"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/button_create_acount"
@@ -116,7 +116,7 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10sp"
-            android:hint="Create account"
+            android:hint="@string/create_new_account"
             android:padding="10sp"
             android:textAlignment="center"
             android:textColor="#fff"

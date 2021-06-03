@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_dark">
+    android:background="@android:color/holo_red_dark">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/my_products_top_bar"
+        android:id="@+id/producers_top_bar"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
         android:background="@color/purple_500"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/my_products_go_back"
+            android:id="@+id/producers_go_back"
             android:layout_width="0sp"
             android:layout_height="match_parent"
             android:src="@drawable/ic_go_back"
@@ -25,28 +25,28 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/my_products_title"
+            android:id="@+id/producers_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/my_products"
+            android:text="@string/producers"
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/my_products_go_back"
+            app:layout_constraintStart_toEndOf="@id/producers_go_back"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_products_recyclerview"
+        android:id="@+id/producers_recyclerview"
         android:layout_width="0sp"
         android:layout_height="0sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/my_products_top_bar" />
+        app:layout_constraintTop_toBottomOf="@id/producers_top_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

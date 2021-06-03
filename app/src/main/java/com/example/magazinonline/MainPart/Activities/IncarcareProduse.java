@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +22,6 @@ import com.example.magazinonline.Classes.Product;
 import com.example.magazinonline.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -35,8 +33,8 @@ import com.google.gson.Gson;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.UUID;
 
 public class IncarcareProduse extends AppCompatActivity implements View.OnClickListener {
@@ -53,7 +51,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
     private Uri imgUri;
     private String myUri = "";
     private StorageReference storageProfilePicsRef;
-    private SharedPreferences key;
     private SharedPreferences preferences;
 
     @Override
@@ -73,7 +70,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
 
     private void setVariables() {
         preferences = getSharedPreferences("traditional_food_app", MODE_PRIVATE);
-        key = getSharedPreferences("UID.txt", MODE_PRIVATE);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Product");
         storageProfilePicsRef = FirebaseStorage.getInstance().getReference()
                 .child("Product photos");
@@ -85,7 +81,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         pretProdus = findViewById(R.id.pretProdus);
         adresaProducator = findViewById(R.id.adresaProducator);
         btnReturn = findViewById(R.id.btnReturn);
-        btnSave = findViewById(R.id.btnSavee);
+        btnSave = findViewById(R.id.btnSave);
     }
 
     private void setOnClickListeners() {
@@ -110,7 +106,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
             case R.id.btnReturn:
                 onBackPressed();
                 break;
-            case R.id.btnSavee:
+            case R.id.btnSave:
                 saveProduct();
                 break;
         }
@@ -122,7 +118,8 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         String descriereProdus = DescriereProdus.getText().toString().trim();
         String PretProdus = pretProdus.getText().toString().trim();
         String AdresaProducator = adresaProducator.getText().toString().trim();
-        String Categorie = mySpinner.getSelectedItem().toString().trim();
+        String Categorie = getCategoryFromStringResource(String
+                .valueOf(mySpinner.getSelectedItem()).trim());
         String userId = "";
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Location locatieProducator = retrieveUserLocationFromSharedPreferences();
@@ -138,25 +135,25 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         Product p;
 
         if (numeProdus.isEmpty()) {
-            NumeProdus.setError("Product name is empty");
+            NumeProdus.setError(getResources().getString(R.string.product_name_empty));
             NumeProdus.requestFocus();
             return;
         }
 
         if (descriereProdus.isEmpty()) {
-            DescriereProdus.setError("Description is required!");
+            DescriereProdus.setError(getResources().getString(R.string.description_required));
             DescriereProdus.requestFocus();
             return;
         }
 
         if (PretProdus.isEmpty()) {
-            pretProdus.setError("Price is required");
+            pretProdus.setError(getResources().getString(R.string.price_required));
             pretProdus.requestFocus();
             return;
         }
 
         if (AdresaProducator.isEmpty()) {
-            adresaProducator.setError("Address is required!");
+            adresaProducator.setError(getResources().getString(R.string.address_required));
             adresaProducator.requestFocus();
             return;
         }
@@ -186,8 +183,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
                     dataAdaugareProdus,
                     Categorie);
         }
-
-        //Toast.makeText(IncarcareProduse.this, p.toString(), Toast.LENGTH_LONG).show();
 
         databaseReference
                 .child(p.getIdProdus())
@@ -249,7 +244,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
             });
         }
         Toast.makeText(this,
-                "Product added successfully",
+                getResources().getString(R.string.product_added_successfully),
                 Toast.LENGTH_LONG).show();
         onBackPressed();
     }
@@ -261,6 +256,27 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         return gson.fromJson(json, Location.class);
     }
 
+    private String getCategoryFromStringResource(String category) {
+        String[] categoryListFromResources = getResources().getStringArray(R.array.names);
+        String translatedCategory = "";
+
+        if (Locale.getDefault().getDisplayLanguage().equals("română")) {
+            return category;
+        } else {
+            if (category.equals(categoryListFromResources[0])) {
+                translatedCategory = "Mancare traditionala";
+            } else if (category.equals(categoryListFromResources[1])) {
+                translatedCategory = "Preparate bio";
+            } else if (category.equals(categoryListFromResources[2])) {
+                translatedCategory = "Bauturi specifice";
+            } else if (category.equals(categoryListFromResources[3])) {
+                translatedCategory = "Fructe si legume";
+            }
+
+            return translatedCategory;
+        }
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -270,6 +286,8 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             imgUri = result.getUri();
             productImage.setImageURI(imgUri);
-        } else Toast.makeText(this, "Error, Try again", Toast.LENGTH_LONG).show();
+        } else Toast.makeText(this,
+                getResources().getString(R.string.error_try_again),
+                Toast.LENGTH_LONG).show();
     }
 }

@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -38,14 +37,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private void saveUserLocation() {
         final int REQUEST_LOCATION_CODE = 99;
         if (ActivityCompat.checkSelfPermission(SplashScreenActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            locationProviderClient.getLastLocation().addOnSuccessListener(this, location -> {
-                if (location != null)
-                    Log.d("location", location.getLatitude() + " / " + location.getLongitude());
-                else
-                    Log.d("location", "null");
-
-                saveLocationToSharedPreferences(location);
-            });
+            locationProviderClient.getLastLocation().addOnSuccessListener(this, this::saveLocationToSharedPreferences);
         } else
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_CODE);
     }

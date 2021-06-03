@@ -1,17 +1,13 @@
 package com.example.magazinonline.MainPart.Activities;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -24,12 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.magazinonline.AuthenticationPart.LogIn;
-import com.example.magazinonline.MainPart.Fragments.EditMyProductFragment;
-import com.example.magazinonline.MainPart.Fragments.MyProductsFragment;
-import com.example.magazinonline.MainPart.Fragments.HomeFragment;
 import com.example.magazinonline.Classes.Maps;
-import com.example.magazinonline.MainPart.Fragments.MessageFragment;
-import com.example.magazinonline.MainPart.Fragments.ProducerFragment;
+import com.example.magazinonline.MainPart.Fragments.EditMyProductFragment;
+import com.example.magazinonline.MainPart.Fragments.HomeFragment;
+import com.example.magazinonline.MainPart.Fragments.MyProductsFragment;
+import com.example.magazinonline.MainPart.Fragments.ProducerDetailsFragment;
+import com.example.magazinonline.MainPart.Fragments.ProducersFragment;
 import com.example.magazinonline.MainPart.ViewModels.HomeViewModel;
 import com.example.magazinonline.R;
 import com.google.android.material.navigation.NavigationView;
@@ -40,7 +36,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 public class Home extends AppCompatActivity implements NavigationView.
         OnNavigationItemSelectedListener {
@@ -49,7 +44,6 @@ public class Home extends AppCompatActivity implements NavigationView.
     private NavigationView navigationView;
     private Toolbar toolbar;
     private DatabaseReference databaseReference;
-    private SharedPreferences preferences;
     private Intent intent;
     private FirebaseUser currentUser;
 
@@ -64,34 +58,22 @@ public class Home extends AppCompatActivity implements NavigationView.
 
         // afisarea fragmentului de acasa (cu categoriile)
         if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, new HomeFragment())
-                    .commit();
+            setFragment(new HomeFragment());
             navigationView.setCheckedItem(R.id.nav_home);
         }
-
-        Location location = retrieveUserLocationFromSharedPreferences();
-
-        if (location != null)
-            Log.d("location Home",
-                    location.getLatitude() + " / " + location.getLongitude());
-        else
-            Log.d("location Home", "null");
     }
 
     // metoda care se apeleaza atunci cand activitatea este vizibila pentru utilizator
     @Override
     protected void onStart() {
         super.onStart();
+        setCurrentUser();
         setDrawerProfile();
     }
 
     // metoda pentru setarea variabilelor membre ale clasei
     private void setVariables() {
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        preferences = getSharedPreferences("traditional_food_app", MODE_PRIVATE);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         toolbar = findViewById(R.id.toolbar);
         drawer = findViewById(R.id.drawer_layout);
@@ -102,7 +84,7 @@ public class Home extends AppCompatActivity implements NavigationView.
 
     private void setToggle() {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,
-                drawer, toolbar, R.string.navigation_drawe_open, R.string.navigation_drawe_close);
+                drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -130,12 +112,15 @@ public class Home extends AppCompatActivity implements NavigationView.
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if (viewModel.getSelectedFragment() instanceof MyProductsFragment) {
+        } else if (viewModel.getSelectedFragment() instanceof MyProductsFragment ||
+                viewModel.getSelectedFragment() instanceof ProducersFragment) {
             setFragment(new HomeFragment());
             showToolbar();
         } else if (viewModel.getSelectedFragment() instanceof EditMyProductFragment)
             setFragment(new MyProductsFragment());
-        else {
+        else if (viewModel.getSelectedFragment() instanceof ProducerDetailsFragment) {
+            setFragment(new ProducersFragment());
+        } else {
             super.onBackPressed();
         }
     }
@@ -144,19 +129,13 @@ public class Home extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_home:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new HomeFragment())
-                        .commit();
+                setFragment(new HomeFragment());
                 break;
             case R.id.nav_profile:
                 startActivity(new Intent(this, LogIn.class));
                 break;
             case R.id.nav_producatori:
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragment_container, new ProducerFragment())
-                        .commit();
+                setFragment(new ProducersFragment());
                 break;
             case R.id.nav_my_products:
                 if (currentUser != null) {
@@ -246,18 +225,12 @@ public class Home extends AppCompatActivity implements NavigationView.
     }
 
     public void hideToolbar() {
-        toolbar.setVisibility(View.GONE);
+        if (toolbar != null)
+            toolbar.setVisibility(View.GONE);
     }
 
     public void showToolbar() {
         toolbar.setVisibility(View.VISIBLE);
-    }
-
-    private Location retrieveUserLocationFromSharedPreferences() {
-        Gson gson = new Gson();
-        String json = preferences.getString("currentLocation", "");
-
-        return gson.fromJson(json, Location.class);
     }
 
     public void setFragment(Fragment selectedFragment) {
@@ -266,5 +239,9 @@ public class Home extends AppCompatActivity implements NavigationView.
                 .beginTransaction()
                 .replace(R.id.fragment_container, selectedFragment)
                 .commit();
+    }
+
+    private void setCurrentUser() {
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 }

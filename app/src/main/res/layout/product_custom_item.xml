@@ -13,41 +13,28 @@
         android:paddingVertical="10sp">
 
         <TextView
-            android:id="@+id/my_product_name"
+            android:id="@+id/product_name"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10sp"
-            android:text="@string/product_name"
             android:textAlignment="textStart"
             android:textColor="#000"
             android:textSize="20sp"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/my_product_edit"
+            app:layout_constraintEnd_toStartOf="@id/product_check_products"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/my_product_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_edit"
-            android:tint="@android:color/holo_green_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/my_product_remove"
-            app:layout_constraintStart_toEndOf="@id/my_product_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/my_product_remove"
+            android:id="@+id/product_check_products"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10sp"
-            android:src="@drawable/ic_remove"
-            android:tint="@android:color/holo_red_light"
+            android:tint="@android:color/holo_green_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/my_product_edit"
+            app:layout_constraintStart_toEndOf="@id/product_name"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

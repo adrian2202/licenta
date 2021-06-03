@@ -23,7 +23,7 @@
         android:id="@+id/splash_screen_text"
         android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:text="Traditional Food"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textColor="#fff"
         android:textSize="35sp"

@@ -45,6 +45,7 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -142,7 +143,8 @@ public class EditMyProductFragment extends Fragment {
                     gallery.setType("image/*");
                     gallery.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(Intent.createChooser(gallery,
-                            "Select picture"), viewModel.getPICK_IMAGE());
+                            requireActivity().getResources().getString(R.string.select_picture)),
+                            viewModel.getPICK_IMAGE());
                 }
         );
 
@@ -193,8 +195,8 @@ public class EditMyProductFragment extends Fragment {
                             .child("Product")
                             .child(selectedProduct.getIdProdus())
                             .child("Categorie")
-                            .setValue(String.valueOf(productCategorySpinner
-                                    .getSelectedItem()));
+                            .setValue(getCategoryFromStringResource(String
+                                    .valueOf(productCategorySpinner.getSelectedItem())));
                 }
 
                 if (!String.valueOf(productLocationLatitude.getText())
@@ -206,8 +208,8 @@ public class EditMyProductFragment extends Fragment {
                             .child(selectedProduct.getIdProdus())
                             .child("LocatieProducator")
                             .child("Latitudine")
-                            .setValue(String.valueOf(productLocationLatitude
-                                    .getText()));
+                            .setValue(Double.valueOf(String.valueOf(productLocationLatitude
+                                    .getText())));
                 }
 
                 if (!String.valueOf(productLocationLongitude.getText())
@@ -219,12 +221,12 @@ public class EditMyProductFragment extends Fragment {
                             .child(selectedProduct.getIdProdus())
                             .child("LocatieProducator")
                             .child("Longitudine")
-                            .setValue(String.valueOf(productLocationLongitude
-                                    .getText()));
+                            .setValue(Double.valueOf(String.valueOf(productLocationLongitude
+                                    .getText())));
                 }
 
                 Toast.makeText(requireContext(),
-                        "Produsul a fost modificat cu succes",
+                        getResources().getString(R.string.product_successfully_modified),
                         Toast.LENGTH_SHORT).show();
             }
 
@@ -349,6 +351,27 @@ public class EditMyProductFragment extends Fragment {
 
             }
         });
+    }
+
+    private String getCategoryFromStringResource(String category) {
+        String[] categoryListFromResources = getResources().getStringArray(R.array.names);
+        String translatedCategory = "";
+
+        if (Locale.getDefault().getDisplayLanguage().equals("română")) {
+            return category;
+        } else {
+            if (category.equals(categoryListFromResources[0])) {
+                translatedCategory = "Mancare traditionala";
+            } else if (category.equals(categoryListFromResources[1])) {
+                translatedCategory = "Preparate bio";
+            } else if (category.equals(categoryListFromResources[2])) {
+                translatedCategory = "Bauturi specifice";
+            } else if (category.equals(categoryListFromResources[3])) {
+                translatedCategory = "Fructe si legume";
+            }
+
+            return translatedCategory;
+        }
     }
 
     @Override

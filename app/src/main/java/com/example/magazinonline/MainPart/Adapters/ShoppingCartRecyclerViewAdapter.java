@@ -97,81 +97,96 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
         private TextView productPrice;
         private TextView productQuantity;
         private ImageView productDelete;
+        private ImageView productAdd;
+        private ImageView productSubtract;
+        private List<Model> modelList;
+        private RecyclerView recyclerView;
 
         public ShoppingCartRecyclerViewViewHolder(@NonNull View itemView,
                                                   List<Model> modelList,
                                                   RecyclerView recyclerView) {
             super(itemView);
 
-            // initializarea view-urilor
-            productImage = itemView.findViewById(R.id.recycler_view_card_view_image);
-            productName = itemView.findViewById(R.id.recycler_view_item_top_layout_product_name);
-            productDescription = itemView
-                    .findViewById(R.id.recycler_view_item_top_layout_product_description);
-            productPrice = itemView.findViewById(R.id.recycler_view_item_top_layout_product_price);
-            productQuantity = itemView
-                    .findViewById(R.id.recycler_view_item_bottom_layout_item_details_item_count);
-            productDelete = itemView.findViewById(R.id.recycler_view_item_bottom_layout_remove);
-            ImageView productAdd = itemView
-                    .findViewById(R.id.recycler_view_item_bottom_layout_item_details_add);
-            ImageView productSubtract = itemView
-                    .findViewById(R.id.recycler_view_item_bottom_layout_item_details_subtract);
+            this.modelList = modelList;
+            this.recyclerView = recyclerView;
 
-            // setarea listener-ului pentru click pe butonul de incrementarea cantitatii prodului
+            setVariables(itemView);
+            setOnClickListeners();
+        }
+
+        private void setVariables(View v) {
+            productImage = v.findViewById(R.id.recycler_view_card_view_image);
+            productName = v.findViewById(R.id.recycler_view_item_top_layout_product_name);
+            productDescription = v
+                    .findViewById(R.id.recycler_view_item_top_layout_product_description);
+            productPrice = v.findViewById(R.id.recycler_view_item_top_layout_product_price);
+            productQuantity = v
+                    .findViewById(R.id.recycler_view_item_bottom_layout_item_details_item_count);
+            productDelete = v.findViewById(R.id.recycler_view_item_bottom_layout_remove);
+            productAdd = v.findViewById(R.id.recycler_view_item_bottom_layout_item_details_add);
+            productSubtract = v
+                    .findViewById(R.id.recycler_view_item_bottom_layout_item_details_subtract);
+        }
+
+        private void setOnClickListeners() {
+            // setarea listener-ului pentru click pe butonul de incrementarea cantitatii produsului
             productAdd.setOnClickListener(view -> {
-                if (ShoppingCartRecyclerViewAdapter.getModel() != null) {
+                if (ShoppingCartRecyclerViewAdapter.getModel() != null &&
+                        getBindingAdapterPosition() > -1) {
                     // salvam produsul a carui cantitate dorim sa o incrementam
                     Model model = modelList.get(getBindingAdapterPosition());
 
-                    ShoppingCartRecyclerViewAdapter
-                            .getDatabaseReference()
-                            .child("User")
-                            .child(ShoppingCartRecyclerViewAdapter.getCurrentUser().getUid())
-                            .child("shoppingCart")
-                            .child(model.getIdProdus())
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    if (snapshot.exists()) {
-                                        // salvam cantitatea curenta a produsului din cos
-                                        int quantity = Integer.parseInt(String.valueOf(snapshot
-                                                .getValue()));
+                    if (model != null) {
+                        ShoppingCartRecyclerViewAdapter
+                                .getDatabaseReference()
+                                .child("User")
+                                .child(ShoppingCartRecyclerViewAdapter.getCurrentUser().getUid())
+                                .child("shoppingCart")
+                                .child(model.getIdProdus())
+                                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            // salvam cantitatea curenta a produsului din cos
+                                            int quantity = Integer.parseInt(String.valueOf(snapshot
+                                                    .getValue()));
 
-                                        // salvam adapter-ul recyclerview-ului
-                                        ShoppingCartRecyclerViewAdapter adapter =
-                                                (ShoppingCartRecyclerViewAdapter) recyclerView
-                                                        .getAdapter();
+                                            // salvam adapter-ul recyclerview-ului
+                                            ShoppingCartRecyclerViewAdapter adapter =
+                                                    (ShoppingCartRecyclerViewAdapter) recyclerView
+                                                            .getAdapter();
 
-                                        // setam cantitatea produsului in lista ce va fi afisata
-                                        // in recyclerview
-                                        model.setCantitate(quantity + 1);
+                                            // setam cantitatea produsului in lista ce va fi afisata
+                                            // in recyclerview
+                                            model.setCantitate(quantity + 1);
 
-                                        // incrementarea cantitatii produsului in baza de date
-                                        ShoppingCartRecyclerViewAdapter
-                                                .getDatabaseReference()
-                                                .child("User")
-                                                .child(ShoppingCartRecyclerViewAdapter
-                                                        .getCurrentUser().getUid())
-                                                .child("shoppingCart")
-                                                .child(model.getIdProdus())
-                                                .setValue(quantity + 1);
+                                            // incrementarea cantitatii produsului in baza de date
+                                            ShoppingCartRecyclerViewAdapter
+                                                    .getDatabaseReference()
+                                                    .child("User")
+                                                    .child(ShoppingCartRecyclerViewAdapter
+                                                            .getCurrentUser().getUid())
+                                                    .child("shoppingCart")
+                                                    .child(model.getIdProdus())
+                                                    .setValue(quantity + 1);
 
-                                        // actualizam adapter-ul recyclerview-ului
-                                        // dupa modificarea cantitatii produsului
-                                        if (adapter != null)
-                                            adapter.notifyItemChanged(getBindingAdapterPosition());
+                                            // actualizam adapter-ul recyclerview-ului
+                                            // dupa modificarea cantitatii produsului
+                                            if (adapter != null)
+                                                adapter.notifyItemChanged(getBindingAdapterPosition());
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
 
-                                }
-                            });
+                                    }
+                                });
+                    }
                 }
             });
 
-            // setarea listener-ului pentru click pe butonul de stergere a prodului
+            // setarea listener-ului pentru click pe butonul de stergere a produsului
             productDelete.setOnClickListener(view -> {
                 if (ShoppingCartRecyclerViewAdapter.getModel() != null) {
                     // salvam produsul pe care dorim sa il stergem
@@ -199,7 +214,7 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
                 }
             });
 
-            // setarea listener-ului pentru click pe butonul de decrementarea cantitatii prodului
+            // setarea listener-ului pentru click pe butonul de decrementarea cantitatii produsului
             productSubtract.setOnClickListener(view -> {
                 if (ShoppingCartRecyclerViewAdapter.getModel() != null) {
                     // salvam produsul a carui cantitate dorim sa o decrementam

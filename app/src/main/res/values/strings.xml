@@ -1,29 +1,93 @@
 <resources>
+    <string name="add_product">Add product</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="address">Address</string>
+    <string name="address_required">Address is required</string>
     <string name="app_name">Traditional Food</string>
-    <string name="vanzator">Vanzator</string>
+    <string name="cancel">Cancel</string>
+    <string name="change_location">Change location</string>
+    <string name="change_profile">Change profile</string>
+    <string name="check_email_reset_password">Check your email to reset your password</string>
     <string name="client">Client</string>
-    <string name="creeaza">Creeaza</string>
-    <string name="create_new_account">Create New Account</string>
-    <string name="password">Password</string>
+    <string name="close">Close</string>
+    <string name="create">Create</string>
+    <string name="create_new_account">Create new account</string>
+    <string name="delete_account">Delete account</string>
+    <string name="description_required">Description is required</string>
+    <string name="edit">Edit</string>
+    <string name="edit_profile">Edit profile</string>
     <string name="email">Email</string>
+    <string name="email_required">Email is required</string>
+    <string name="error_try_again">Error, try again!</string>
+    <string name="first_name">First name</string>
+    <string name="first_name_required">First name is required</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="good_appetite">Good appetite!</string>
+    <string name="home">Home</string>
+    <string name="last_name">Last name</string>
+    <string name="last_name_required">Last name is required</string>
     <string name="login">Login</string>
-    <string name="name">Nume</string>
-    <string name="prenume">Prenume</string>
-    <string name="telefon">Telefon</string>
-    <string name="navigation_drawe_open">Open navigation drawer</string>
-    <string name="navigation_drawe_close">Close navigation drawer</string>
+    <string name="logout">Logout</string>
+    <string name="map">Map</string>
+    <string name="my_cart">My cart</string>
+    <string name="my_products">My products</string>
+    <string name="name">Name</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="new_password">New password</string>
+    <string name="no_existing_products">There are no products to be shown</string>
+    <string name="old_password">Old password</string>
+    <string name="password">Password</string>
+    <string name="password_min_length">Password should have at least 6 characters</string>
+    <string name="password_required">Password is required</string>
+    <string name="pay">Pay</string>
+    <string name="phone">Phone</string>
+    <string name="phone_required">Phone is required</string>
+    <string name="please_enter_first_name">Please enter your first name</string>
+    <string name="please_enter_last_name">Please enter your last name</string>
+    <string name="please_enter_phone">Please enter your phone</string>
+    <string name="please_provide_valid_email">Please provide a valid email</string>
+    <string name="please_wait_setting_date">Please wait while we are setting your data</string>
+    <string name="price_required">Price is required</string>
+    <string name="producer_information">Producer information</string>
+    <string name="producers">Producers</string>
+    <string name="product_added_successfully">Product added successfully</string>
+    <string name="product_added_to_cart">Product added to your shopping cart</string>
+    <string name="product_already_in_cart">Product already in your cart</string>
+    <string name="product_category">Product category</string>
+    <string name="product_description">Product description</string>
+    <string name="product_information">Product information</string>
+    <string name="product_name">Product name</string>
+    <string name="product_name_empty">Product name is empty</string>
+    <string name="product_price">Product price</string>
+    <string name="product_successfully_modified">The product was successfully modified</string>
+    <string name="profile">Profile</string>
+    <string name="quantity">Quantity</string>
+    <string name="registration_failed">Registration failed! Try again</string>
+    <string name="reset_password">Reset password</string>
+    <string name="save">Save</string>
+    <string name="select_picture">Select picture</string>
+    <string name="seller">Seller</string>
+    <string name="send_email_for_reset">Send email for reset</string>
+    <string name="set_your_profile">Set your profile</string>
+    <string name="shopping_cart">Shopping cart</string>
+    <string name="shopping_cart_is_empty">Your cart is empty</string>
+    <string name="total">Total</string>
+    <string name="try_again_something_happened">Try again! Something wrong happened</string>
+    <string name="upload_photo">Upload photo</string>
+    <string name="user_registered">User has been successfully registered</string>
+    <string name="username">Username</string>
+    <string name="wrong_credentials">Wrong credentials</string>
 
     <string-array name="names">
-        <item>Mancare traditionala</item>
-        <item>Preparate bio</item>
-        <item>Bauturi specifice</item>
-        <item>Fructe si legume</item>
+        <item>Traditional food</item>
+        <item>Bio food</item>
+        <item>Specific drinks</item>
+        <item>Fruits and vegetables</item>
     </string-array>
 
     <string-array name="pay_methods">
-        <item>Livrare la domiciliu</item>
-        <item>Ridicare personala</item>
+        <item>Home delivery</item>
+        <item>Personal lift</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

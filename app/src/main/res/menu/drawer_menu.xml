@@ -6,27 +6,27 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="Home" />
+            android:title="@string/home" />
 
         <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
-            android:title="Profile" />
+            android:title="@string/profile" />
 
         <item
             android:id="@+id/nav_producatori"
             android:icon="@drawable/ic_producatori"
-            android:title="Producer" />
+            android:title="@string/producers" />
 
         <item
             android:id="@+id/nav_my_products"
             android:icon="@drawable/ic_edit"
-            android:title="Produsele mele" />
+            android:title="@string/my_products" />
 
         <item
             android:id="@+id/nav_map"
             android:icon="@drawable/ic_map"
-            android:title="Map" />
+            android:title="@string/map" />
     </group>
 
 </menu>

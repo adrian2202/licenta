@@ -91,7 +91,7 @@ public class ShoppingCart extends AppCompatActivity {
                 // si nu putem realiza plata
             else
                 Toast.makeText(ShoppingCart.this,
-                        "Cosul de cumparaturi este gol",
+                        getResources().getString(R.string.shopping_cart_is_empty),
                         Toast.LENGTH_SHORT).show();
         });
     }
@@ -256,7 +256,7 @@ public class ShoppingCart extends AppCompatActivity {
     private void payTheOrder() {
         // afisam mesaj de succes
         Toast.makeText(ShoppingCart.this,
-                "Pofta buna!",
+                getResources().getString(R.string.good_appetite),
                 Toast.LENGTH_SHORT).show();
 
         // stergem cosul de cumparaturi al utilizatorului din baza de date

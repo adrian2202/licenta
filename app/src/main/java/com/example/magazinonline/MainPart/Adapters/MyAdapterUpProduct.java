@@ -18,6 +18,7 @@ import com.example.magazinonline.MainPart.Activities.ProductDetails;
 import com.example.magazinonline.R;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MyAdapterUpProduct extends RecyclerView.Adapter<MyAdapterUpProduct.modelViewholder> {
     private Context mCtx;
@@ -65,7 +66,7 @@ public class MyAdapterUpProduct extends RecyclerView.Adapter<MyAdapterUpProduct.
         holder.descriere.setText(model.getDescriereProdus());
         holder.pret.setText(model.getPretProdus());
         holder.locatie.setText(model.getAdresaProducator());
-        holder.categorie.setText(model.getCategorie());
+        holder.categorie.setText(translateCategoryFromRomanian(model.getCategorie()));
         Glide.with(holder.img.getContext()).load(model.getImage()).into(holder.img);
     }
 
@@ -74,8 +75,30 @@ public class MyAdapterUpProduct extends RecyclerView.Adapter<MyAdapterUpProduct.
         return modelList.size();
     }
 
-    // clasa interioara ce are rol de viewholder (initializeaza view-urile ce
-    // afiseaza datele produsului pe ecran)
+    private String translateCategoryFromRomanian(String category) {
+        String translatedCategory = "";
+        String[] categoryListFromStringArray = parentActivity
+                .getResources().getStringArray(R.array.names);
+
+        if (Locale.getDefault().getDisplayLanguage().equals("română")) {
+            return category;
+        } else {
+            if (category.equals("Mancare traditionala")) {
+                translatedCategory = categoryListFromStringArray[0];
+            } else if (category.equals("Preparate bio")) {
+                translatedCategory = categoryListFromStringArray[1];
+            } else if (category.equals("Bauturi specifice")) {
+                translatedCategory = categoryListFromStringArray[2];
+            } else if (category.equals("Fructe si legume")) {
+                translatedCategory = categoryListFromStringArray[3];
+            }
+
+            return translatedCategory;
+        }
+    }
+
+    // clasa interioara ce are rol de viewholder (initializeaza view-urile ce afiseaza
+    // datele produsului pe ecran)
     public static class modelViewholder extends RecyclerView.ViewHolder {
         private ImageView img;
         private TextView nume;

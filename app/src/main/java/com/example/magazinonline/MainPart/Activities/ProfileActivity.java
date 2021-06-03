@@ -104,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void getUserinfo() {
-        if (mAuth.getCurrentUser() != null)
+        if (mAuth.getCurrentUser() != null) {
             databaseReference.child(mAuth.getCurrentUser().getUid())
                     .addValueEventListener(new ValueEventListener() {
                         @Override
@@ -123,6 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                         }
                     });
+        }
     }
 
     private void setUserInfo() {
@@ -147,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ProfileActivity.this,
-                        "Something wrong happened",
+                        getResources().getString(R.string.try_again_something_happened),
                         Toast.LENGTH_LONG).show();
             }
         });

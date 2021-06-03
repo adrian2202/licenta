@@ -104,7 +104,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10sp"
-                android:text="Cantitate"
+                android:text="@string/quantity"
                 android:textAlignment="textStart"
                 android:textColor="#000"
                 android:textSize="24sp"

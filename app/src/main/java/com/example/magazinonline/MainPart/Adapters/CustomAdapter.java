@@ -31,59 +31,51 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_item, parent, false);
+        View v = LayoutInflater
+                .from(parent.getContext())
+                .inflate(R.layout.layout_list_item, parent, false);
+
         context2 = parent.getContext();
+
         return new MyViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // initializarea variabilelor
         App app = apps.get(position);
+        String categoryText = "";
+        Intent intent = new Intent(context2, ProductInfoFirebase.class);
+
         holder.mName.setText(app.getName());
         holder.mImage.setImageResource(app.getImage());
 
-        switch(position)
-        {
+        switch (position) {
             case 0:
+                categoryText = "Mancare traditionala";
                 break;
             case 1:
+                categoryText = "Preparate bio";
                 break;
             case 2:
+                categoryText = "Bauturi specifice";
                 break;
             case 3:
+                categoryText = "Fructe si legume";
                 break;
         }
 
-//     asocierea imaginilor cu lista de produse
-        if (position == 0) {
-            holder.itemView.setOnClickListener(v -> {
-                String value = "Mancare traditionala";//trimitem pozitia lor
-                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
-                intent1.putExtra("position", value);
-                context.startActivity(intent1);
-            });
-        } else if (position == 1) {
-            holder.itemView.setOnClickListener(v -> {
-                String value = "Preparate bio";
-                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
-                intent1.putExtra("position", value);
-                context.startActivity(intent1);
-            });
-        } else if (position == 2) {
-            holder.itemView.setOnClickListener(v -> {
-                String value = "Bauturi specifice";
-                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
-                intent1.putExtra("position", value);
-                context.startActivity(intent1);
-            });
-        } else if (position == 3) {
-            holder.itemView.setOnClickListener(v -> {
-                String value = "Fructe si legume";
-                Intent intent1 = new Intent(context2, ProductInfoFirebase.class);
-                intent1.putExtra("position", value);
-                context.startActivity(intent1);
-            });
-        }
+        // salvarea unei copii a stringului ce contine categoria selectata
+        // pentru a putea fi accesata in listener
+        final String copyOfCategoryText = categoryText;
+
+        // initializarea listenerului onclick
+        holder.itemView.setOnClickListener(view -> {
+            // adaugam intent-ului categoria selectata si pornim activitatea de afisare
+            // a produselor pe categorii
+            intent.putExtra("position", copyOfCategoryText);
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -97,6 +89,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            // initializarea view-urilor (numele si imaginea categoriei)
             mName = itemView.findViewById(R.id.name);
             mImage = itemView.findViewById(R.id.image);
         }
