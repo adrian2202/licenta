@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.magazinonline.Classes.Model;
+import com.example.magazinonline.Classes.ProducerAddress;
 import com.example.magazinonline.MainPart.Activities.ProductDetails;
 import com.example.magazinonline.R;
 
@@ -62,10 +63,17 @@ public class MyAdapterUpProduct extends RecyclerView.Adapter<MyAdapterUpProduct.
     public void onBindViewHolder(@NonNull MyAdapterUpProduct.modelViewholder holder,
                                  int position) {
         Model model = modelList.get(position);
+        ProducerAddress address;
+
         holder.nume.setText(model.getNumeProdus());
         holder.descriere.setText(model.getDescriereProdus());
         holder.pret.setText(model.getPretProdus());
-        holder.locatie.setText(model.getAdresaProducator());
+
+        if (model.getAdresaProducator() != null) {
+            address = model.getAdresaProducator();
+            holder.locatie.setText(address.toString());
+        }
+
         holder.categorie.setText(translateCategoryFromRomanian(model.getCategorie()));
         Glide.with(holder.img.getContext()).load(model.getImage()).into(holder.img);
     }
@@ -83,14 +91,19 @@ public class MyAdapterUpProduct extends RecyclerView.Adapter<MyAdapterUpProduct.
         if (Locale.getDefault().getDisplayLanguage().equals("română")) {
             return category;
         } else {
-            if (category.equals("Mancare traditionala")) {
-                translatedCategory = categoryListFromStringArray[0];
-            } else if (category.equals("Preparate bio")) {
-                translatedCategory = categoryListFromStringArray[1];
-            } else if (category.equals("Bauturi specifice")) {
-                translatedCategory = categoryListFromStringArray[2];
-            } else if (category.equals("Fructe si legume")) {
-                translatedCategory = categoryListFromStringArray[3];
+            switch (category) {
+                case "Mancare traditionala":
+                    translatedCategory = categoryListFromStringArray[0];
+                    break;
+                case "Preparate bio":
+                    translatedCategory = categoryListFromStringArray[1];
+                    break;
+                case "Bauturi specifice":
+                    translatedCategory = categoryListFromStringArray[2];
+                    break;
+                case "Fructe si legume":
+                    translatedCategory = categoryListFromStringArray[3];
+                    break;
             }
 
             return translatedCategory;

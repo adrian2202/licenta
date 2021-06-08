@@ -9,7 +9,7 @@ public class Model implements Serializable {
     private String NumeProdus;
     private String descriereProdus;
     private String PretProdus;
-    private String AdresaProducator;
+    private ProducerAddress AdresaProducator;
     private String image;
     private String Categorie;
     private String data;
@@ -20,7 +20,7 @@ public class Model implements Serializable {
     }
 
     public Model(String idProdus, String numeProdus, String descriereProdus, String pretProdus,
-                 String adresaProducator, String data, String image, String categorie) {
+                 ProducerAddress adresaProducator, String data, String image, String categorie) {
         this.idProdus = idProdus;
         NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
@@ -59,11 +59,11 @@ public class Model implements Serializable {
         PretProdus = pretProdus;
     }
 
-    public String getAdresaProducator() {
+    public ProducerAddress getAdresaProducator() {
         return AdresaProducator;
     }
 
-    public void setAdresaProducator(String adresaProducator) {
+    public void setAdresaProducator(ProducerAddress adresaProducator) {
         AdresaProducator = adresaProducator;
     }
 

@@ -22,7 +22,6 @@ public class HomeViewModel extends AndroidViewModel {
     private Fragment selectedFragment = new HomeFragment();
     private Product selectedProduct;
     private boolean productIsModified = false;
-    private boolean editProductImageModified = false;
     private User selectedProducer = null;
     private Product selectedProducerProduct = null;
 
@@ -32,22 +31,21 @@ public class HomeViewModel extends AndroidViewModel {
         String[] categoryListString = application.getResources().getStringArray(R.array.names);
 
         slideModels.add(new SlideModel("https://revistaprogresiv.ro/sites/default/" +
-                "files/article/images/gusturi_romanesti_4.jpg", "Imagine 1"));
+                "files/article/images/gusturi_romanesti_4.jpg"));
 
         slideModels.add(new SlideModel("https://www.bioshopromania.com/" +
                 "images/thumbnails/770/709/detailed/4/" +
-                "cos_traditional_romanesc_mare_2_BioShopRomania.JPG?t=1602080293",
-                "Imagine 2"));
+                "cos_traditional_romanesc_mare_2_BioShopRomania.JPG?t=1602080293"));
 
         slideModels.add(new SlideModel("https://www.ziromania.ro/wp-content/uploads/" +
                 "2018/12/b%C4%83uturi-tradi%C8%9Bionale-rom%C3%A2ne%C8%99ti" +
-                "-vazute-la-crama-1777-3.jpg", "Imagine 3"));
+                "-vazute-la-crama-1777-3.jpg"));
 
         slideModels.add(new SlideModel("https://www.banateanul.ro/wp-content/" +
-                "uploads/2019/07/bauturi-traditionale-romanesti.jpg", "Imagine 4"));
+                "uploads/2019/07/bauturi-traditionale-romanesti.jpg"));
 
         slideModels.add(new SlideModel("https://medisf.traasgpu.com/ifis/" +
-                "62277a094eff337f-1024x576.jpg", "Imagine 5"));
+                "62277a094eff337f-1024x576.jpg"));
 
         categories.add(new App(R.drawable.mancaruri_traditionale, categoryListString[0]));
         categories.add(new App(R.drawable.produse_bio, categoryListString[1]));
@@ -93,14 +91,6 @@ public class HomeViewModel extends AndroidViewModel {
 
     public int getPICK_IMAGE() {
         return 2;
-    }
-
-    public boolean isEditProductImageModified() {
-        return editProductImageModified;
-    }
-
-    public void setEditProductImageModified(boolean editProductImageModified) {
-        this.editProductImageModified = editProductImageModified;
     }
 
     public User getSelectedProducer() {

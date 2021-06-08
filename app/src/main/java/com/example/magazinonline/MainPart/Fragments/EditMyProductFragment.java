@@ -3,6 +3,8 @@ package com.example.magazinonline.MainPart.Fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.magazinonline.Classes.ProducerAddress;
 import com.example.magazinonline.Classes.Product;
 import com.example.magazinonline.MainPart.Activities.Home;
 import com.example.magazinonline.MainPart.ViewModels.HomeViewModel;
@@ -45,6 +49,7 @@ import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Locale;
 
 import static android.app.Activity.RESULT_OK;
@@ -138,26 +143,7 @@ public class EditMyProductFragment extends Fragment {
 
         goBack.setOnClickListener(view -> ((Home) requireActivity()).onBackPressed());
 
-        productImage.setOnClickListener(view -> {
-                    Intent gallery = new Intent();
-                    gallery.setType("image/*");
-                    gallery.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(gallery,
-                            requireActivity().getResources().getString(R.string.select_picture)),
-                            viewModel.getPICK_IMAGE());
-                }
-        );
-
         save.setOnClickListener(view -> {
-            // imaginea se modifica in storage, dar nu si in aplicatie
-            if (viewModel.isEditProductImageModified()) {
-                storageReference
-                        .child("Product photos")
-                        .child(selectedProduct.getIdProdus() + ".jpg")
-                        .putFile(imageUri);
-                viewModel.setEditProductImageModified(false);
-            }
-
             if (viewModel.isProductIsModified()) {
                 if (!String.valueOf(productNameField.getText())
                         .equals(selectedProduct.getNumeProdus()) &&
@@ -223,6 +209,53 @@ public class EditMyProductFragment extends Fragment {
                             .child("Longitudine")
                             .setValue(Double.valueOf(String.valueOf(productLocationLongitude
                                     .getText())));
+                }
+
+                if ((!String.valueOf(productLocationLatitude.getText())
+                        .equals(String.valueOf(selectedProduct
+                                .getLatitudineProducator())) &&
+                        !String.valueOf(productLocationLatitude.getText()).trim().equals("")) &&
+                        (!String.valueOf(productLocationLongitude.getText())
+                                .equals(String.valueOf(selectedProduct
+                                        .getLongitudineProducator())) &&
+                                !String.valueOf(productLocationLongitude.getText()).trim().equals(""))) {
+                    double selectedLatitude = Double.parseDouble(String.valueOf(productLocationLatitude.getText()));
+                    double selectedLongitude = Double.parseDouble(String.valueOf(productLocationLongitude.getText()));
+
+                    try {
+                        Geocoder geo = new Geocoder(requireContext(), Locale.getDefault());
+                        List<Address> addresses = geo.getFromLocation(selectedLatitude, selectedLongitude, 1);
+                        if (!addresses.isEmpty()) {
+                            ProducerAddress address = new ProducerAddress(addresses.get(0).getFeatureName(),
+                                    addresses.get(0).getLocality(),
+                                    addresses.get(0).getAdminArea(),
+                                    addresses.get(0).getCountryName());
+
+                            if (addresses.get(0).getFeatureName() == null) {
+                                address.setStreet("null");
+                            }
+
+                            if (addresses.get(0).getLocality() == null) {
+                                address.setLocality("null");
+                            }
+
+                            if (addresses.get(0).getAdminArea() == null) {
+                                address.setArea("null");
+                            }
+
+                            if (addresses.get(0).getCountryName() == null) {
+                                address.setCountry("null");
+                            }
+
+                            databaseReference
+                                    .child("Product")
+                                    .child(selectedProduct.getIdProdus())
+                                    .child("AdresaProducator")
+                                    .setValue(address);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 Toast.makeText(requireContext(),
@@ -392,12 +425,6 @@ public class EditMyProductFragment extends Fragment {
                 productLocationLatitude.setText(String.valueOf(latitude));
                 productLocationLongitude.setText(String.valueOf(longitude));
             }
-        } else if (requestCode == viewModel.getPICK_IMAGE() &&
-                resultCode == RESULT_OK &&
-                data != null) {
-            imageUri = data.getData();
-            Glide.with(requireActivity()).load(imageUri).into(productImage);
-            viewModel.setEditProductImageModified(true);
         }
     }
 }

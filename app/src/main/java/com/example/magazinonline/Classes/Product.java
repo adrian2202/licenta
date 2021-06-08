@@ -10,7 +10,7 @@ public class Product implements Serializable {
     private String NumeProdus;
     private String descriereProdus;
     private String PretProdus;
-    private String AdresaProducator;
+    private ProducerAddress AdresaProducator;
     private double LatitudineProducator;
     private double LongitudineProducator;
     private MyTime dataAdaugareProdus;
@@ -26,21 +26,21 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
-                   String adresaProducator,
+                   ProducerAddress adresaProducator,
                    double latitudineProducator,
                    double longitudineProducator,
                    MyTime dataAdaugareProdus,
                    String categorie) {
         this.idProdus = idProdus;
         this.idProducator = idProducator;
-        NumeProdus = numeProdus;
+        this.NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
-        PretProdus = pretProdus;
-        AdresaProducator = adresaProducator;
-        LatitudineProducator = latitudineProducator;
-        LongitudineProducator = longitudineProducator;
+        this.PretProdus = pretProdus;
+        this.AdresaProducator = adresaProducator;
+        this.LatitudineProducator = latitudineProducator;
+        this.LongitudineProducator = longitudineProducator;
         this.dataAdaugareProdus = dataAdaugareProdus;
-        Categorie = categorie;
+        this.Categorie = categorie;
     }
 
     public Product(String idProdus,
@@ -48,17 +48,15 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
-                   String adresaProducator,
                    MyTime dataAdaugareProdus,
                    String categorie) {
         this.idProdus = idProdus;
         this.idProducator = idProducator;
-        NumeProdus = numeProdus;
+        this.NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
-        PretProdus = pretProdus;
-        AdresaProducator = adresaProducator;
+        this.PretProdus = pretProdus;
         this.dataAdaugareProdus = dataAdaugareProdus;
-        Categorie = categorie;
+        this.Categorie = categorie;
     }
 
     public Product(String idProdus,
@@ -66,7 +64,7 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
-                   String adresaProducator,
+                   ProducerAddress adresaProducator,
                    double latitudineProducator,
                    double longitudineProducator,
                    MyTime dataAdaugareProdus,
@@ -125,11 +123,11 @@ public class Product implements Serializable {
         PretProdus = pretProdus;
     }
 
-    public String getAdresaProducator() {
+    public ProducerAddress getAdresaProducator() {
         return AdresaProducator;
     }
 
-    public void setAdresaProducator(String adresaProducator) {
+    public void setAdresaProducator(ProducerAddress adresaProducator) {
         AdresaProducator = adresaProducator;
     }
 
@@ -182,7 +180,7 @@ public class Product implements Serializable {
                 ", NumeProdus='" + NumeProdus + '\'' +
                 ", descriereProdus='" + descriereProdus + '\'' +
                 ", PretProdus='" + PretProdus + '\'' +
-                ", AdresaProducator='" + AdresaProducator + '\'' +
+                ", AdresaProducator=" + AdresaProducator +
                 ", LatitudineProducator=" + LatitudineProducator +
                 ", LongitudineProducator=" + LongitudineProducator +
                 ", dataAdaugareProdus=" + dataAdaugareProdus +

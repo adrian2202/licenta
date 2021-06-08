@@ -13,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.magazinonline.Classes.MyTime;
+import com.example.magazinonline.Classes.ProducerAddress;
 import com.example.magazinonline.Classes.Product;
 import com.example.magazinonline.MainPart.Activities.Home;
 import com.example.magazinonline.MainPart.Adapters.MyProductsRecyclerViewAdapter;
@@ -88,26 +90,51 @@ public class MyProductsFragment extends Fragment {
                             if (product.hasChild("idProducator") &&
                                     String.valueOf(product.child("idProducator").getValue())
                                             .equals(currentUser.getUid())) {
-                                Product myProduct = product.getValue(Product.class);
+                                Product myProduct = new Product();
 
-                                if (myProduct != null) {
-                                    if (product.hasChild("LocatieProducator") &&
-                                            product.child("LocatieProducator")
-                                                    .hasChild("Latitudine"))
-                                        myProduct.setLatitudineProducator(Double
-                                                .parseDouble(String.valueOf(product
-                                                        .child("LocatieProducator")
-                                                        .child("Latitudine").getValue())));
-                                    if (product.hasChild("LocatieProducator") &&
-                                            product.child("LocatieProducator").
-                                                    hasChild("Longitudine"))
-                                        myProduct.setLongitudineProducator(Double.
-                                                parseDouble(String.valueOf(product
-                                                        .child("LocatieProducator")
-                                                        .child("Longitudine").getValue())));
+                                if (product.hasChild("idProdus"))
+                                    myProduct.setIdProdus(String.valueOf(product.child("idProdus").getValue()));
 
-                                    productList.add(myProduct);
-                                }
+                                if (product.hasChild("idProducator"))
+                                    myProduct.setIdProducator(String.valueOf(product.child("idProducator").getValue()));
+
+                                if (product.hasChild("NumeProdus"))
+                                    myProduct.setNumeProdus(String.valueOf(product.child("NumeProdus").getValue()));
+
+                                if (product.hasChild("descriereProdus"))
+                                    myProduct.setDescriereProdus(String.valueOf(product.child("descriereProdus").getValue()));
+
+                                if (product.hasChild("PretProdus"))
+                                    myProduct.setPretProdus(String.valueOf(product.child("PretProdus").getValue()));
+
+                                if (product.hasChild("Categorie"))
+                                    myProduct.setCategorie(String.valueOf(product.child("Categorie").getValue()));
+
+                                if (product.hasChild("AdresaProducator"))
+                                    myProduct.setAdresaProducator(product.child("AdresaProducator").getValue(ProducerAddress.class));
+
+                                if (product.hasChild("dataAdaugareProdus"))
+                                    myProduct.setDataAdaugareProdus(product.child("dataAdaugareProdus").getValue(MyTime.class));
+
+                                if (product.hasChild("image"))
+                                    myProduct.setImage(String.valueOf(product.child("image").getValue()));
+
+                                if (product.hasChild("LocatieProducator") &&
+                                        product.child("LocatieProducator")
+                                                .hasChild("Latitudine"))
+                                    myProduct.setLatitudineProducator(Double
+                                            .parseDouble(String.valueOf(product
+                                                    .child("LocatieProducator")
+                                                    .child("Latitudine").getValue())));
+                                if (product.hasChild("LocatieProducator") &&
+                                        product.child("LocatieProducator").
+                                                hasChild("Longitudine"))
+                                    myProduct.setLongitudineProducator(Double.
+                                            parseDouble(String.valueOf(product
+                                                    .child("LocatieProducator")
+                                                    .child("Longitudine").getValue())));
+
+                                productList.add(myProduct);
                             }
 
                 adapter.notifyDataSetChanged();

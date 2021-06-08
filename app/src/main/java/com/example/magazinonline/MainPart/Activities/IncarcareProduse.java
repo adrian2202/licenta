@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.magazinonline.Classes.MyTime;
+import com.example.magazinonline.Classes.ProducerAddress;
 import com.example.magazinonline.Classes.Product;
 import com.example.magazinonline.R;
 import com.google.android.gms.tasks.Continuation;
@@ -42,7 +43,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
     private EditText NumeProdus;
     private EditText DescriereProdus;
     private EditText pretProdus;
-    private EditText adresaProducator;
     private Spinner mySpinner;
     private Button btnReturn, btnSave;
     private ImageView productImage;
@@ -79,7 +79,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         NumeProdus = findViewById(R.id.NumeProdus);
         DescriereProdus = findViewById(R.id.DescriereProdus);
         pretProdus = findViewById(R.id.pretProdus);
-        adresaProducator = findViewById(R.id.adresaProducator);
         btnReturn = findViewById(R.id.btnReturn);
         btnSave = findViewById(R.id.btnSave);
     }
@@ -117,12 +116,17 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         String numeProdus = NumeProdus.getText().toString().trim();
         String descriereProdus = DescriereProdus.getText().toString().trim();
         String PretProdus = pretProdus.getText().toString().trim();
-        String AdresaProducator = adresaProducator.getText().toString().trim();
+        ProducerAddress AdresaProducator = null;
         String Categorie = getCategoryFromStringResource(String
                 .valueOf(mySpinner.getSelectedItem()).trim());
         String userId = "";
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Location locatieProducator = retrieveUserLocationFromSharedPreferences();
+
+        if (locatieProducator != null) {
+            AdresaProducator = new ProducerAddress(locatieProducator, getApplicationContext());
+        }
+
         LocalDateTime timpCurent = LocalDateTime.now();
         MyTime dataAdaugareProdus = new MyTime(timpCurent.getYear(),
                 timpCurent.getMonthValue(),
@@ -152,12 +156,6 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
             return;
         }
 
-        if (AdresaProducator.isEmpty()) {
-            adresaProducator.setError(getResources().getString(R.string.address_required));
-            adresaProducator.requestFocus();
-            return;
-        }
-
         //incarcare date in firebase
         if (currentUser != null)
             userId = currentUser.getUid();
@@ -179,18 +177,18 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
                     numeProdus,
                     descriereProdus,
                     PretProdus,
-                    AdresaProducator,
                     dataAdaugareProdus,
                     Categorie);
         }
 
-        databaseReference
-                .child(p.getIdProdus())
-                .child("AdresaProducator").
-                setValue(p.getAdresaProducator());
         databaseReference.child(p.getIdProdus()).child("Categorie").setValue(p.getCategorie());
 
         if (locatieProducator != null) {
+            databaseReference
+                    .child(p.getIdProdus())
+                    .child("AdresaProducator").
+                    setValue(p.getAdresaProducator());
+
             databaseReference.
                     child(p.getIdProdus())
                     .child("LocatieProducator")

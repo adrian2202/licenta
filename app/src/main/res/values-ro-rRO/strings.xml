@@ -15,7 +15,7 @@
     <string name="address">Adresă</string>
     <string name="add_to_cart">Adaugă în coș</string>
     <string name="cancel">Anulare</string>
-    <string name="close">Închidere</string>
+    <string name="close">Închide</string>
     <string name="delete_account">Ștergere cont</string>
     <string name="edit">Modificare</string>
     <string name="edit_profile">Modificare profil</string>
@@ -24,7 +24,7 @@
     <string name="map">Hartă</string>
     <string name="my_cart">Coșul meu</string>
     <string name="my_products">Produsele mele</string>
-    <string name="add_product">Adaugă produsul</string>
+    <string name="add_product">Adăugare produs</string>
     <string name="new_password">Parolă nouă</string>
     <string name="old_password">Parolă veche</string>
     <string name="pay">Plătiți</string>
@@ -49,18 +49,6 @@
     <string name="shopping_cart_is_empty">Coșul dumneavoastră este gol</string>
     <string name="send_email_for_reset">Trimitere email pentru resetare</string>
     <string name="username">Utilizator</string>
-
-    <string-array name="names">
-        <item>Mancare traditionala</item>
-        <item>Preparate bio</item>
-        <item>Bauturi specifice</item>
-        <item>Fructe si legume</item>
-    </string-array>
-
-    <string-array name="pay_methods">
-        <item>Livrare la domiciliu</item>
-        <item>Ridicare personala</item>
-    </string-array>
     <string name="good_appetite">Poftă bună!</string>
     <string name="first_name_required">Prenumele este obligatoriu</string>
     <string name="last_name_required">Numele este obligatoriu</string>
@@ -89,4 +77,17 @@
     <string name="check_email_reset_password">Verificați-vă email-ul pentru a vă reseta parola</string>
     <string name="try_again_something_happened">Încercați din nou! Ceva s-a întâmplat</string>
     <string name="wrong_credentials">Acreditări greșite</string>
+    <string name="i_am_here">Locație curentă</string>
+
+    <string-array name="names">
+        <item>Mancare traditionala</item>
+        <item>Preparate bio</item>
+        <item>Bauturi specifice</item>
+        <item>Fructe si legume</item>
+    </string-array>
+
+    <string-array name="pay_methods">
+        <item>Livrare la domiciliu</item>
+        <item>Ridicare personala</item>
+    </string-array>
 </resources>
