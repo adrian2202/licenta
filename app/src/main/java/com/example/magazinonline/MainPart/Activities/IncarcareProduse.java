@@ -43,6 +43,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
     private EditText NumeProdus;
     private EditText DescriereProdus;
     private EditText pretProdus;
+    private EditText cantitateProdus;
     private Spinner mySpinner;
     private Button btnReturn, btnSave;
     private ImageView productImage;
@@ -79,6 +80,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         NumeProdus = findViewById(R.id.NumeProdus);
         DescriereProdus = findViewById(R.id.DescriereProdus);
         pretProdus = findViewById(R.id.pretProdus);
+        cantitateProdus = findViewById(R.id.cantitateProdus);
         btnReturn = findViewById(R.id.btnReturn);
         btnSave = findViewById(R.id.btnSave);
     }
@@ -116,6 +118,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         String numeProdus = NumeProdus.getText().toString().trim();
         String descriereProdus = DescriereProdus.getText().toString().trim();
         String PretProdus = pretProdus.getText().toString().trim();
+        int CantitateProdus = Integer.parseInt(String.valueOf(cantitateProdus.getText()).trim());
         ProducerAddress AdresaProducator = null;
         String Categorie = getCategoryFromStringResource(String
                 .valueOf(mySpinner.getSelectedItem()).trim());
@@ -166,6 +169,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
                     numeProdus,
                     descriereProdus,
                     PretProdus,
+                    CantitateProdus,
                     AdresaProducator,
                     locatieProducator.getLatitude(),
                     locatieProducator.getLongitude(),
@@ -177,6 +181,7 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
                     numeProdus,
                     descriereProdus,
                     PretProdus,
+                    CantitateProdus,
                     dataAdaugareProdus,
                     Categorie);
         }
@@ -216,6 +221,9 @@ public class IncarcareProduse extends AppCompatActivity implements View.OnClickL
         databaseReference
                 .child(p.getIdProdus())
                 .child("idProducator").setValue(p.getIdProducator());
+        databaseReference
+                .child(p.getIdProdus())
+                .child("cantitateProdus").setValue(p.getCantitateProdus());
 
         // incarcare imagine in firebase
         if (imgUri != null) {

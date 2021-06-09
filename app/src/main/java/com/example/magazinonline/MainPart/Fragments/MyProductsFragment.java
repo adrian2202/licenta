@@ -119,6 +119,9 @@ public class MyProductsFragment extends Fragment {
                                 if (product.hasChild("image"))
                                     myProduct.setImage(String.valueOf(product.child("image").getValue()));
 
+                                if (product.hasChild("cantitateProdus"))
+                                    myProduct.setCantitateProdus(Integer.parseInt(String.valueOf(product.child("cantitateProdus").getValue())));
+
                                 if (product.hasChild("LocatieProducator") &&
                                         product.child("LocatieProducator")
                                                 .hasChild("Latitudine"))

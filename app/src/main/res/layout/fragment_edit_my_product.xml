@@ -70,6 +70,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_my_product_image"
@@ -80,6 +81,7 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_my_product_name"
@@ -90,9 +92,21 @@
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/edit_my_product_description"
+                app:layout_constraintWidth_percent=".8" />
+
+            <EditText
+                android:id="@+id/edit_my_product_quantity"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:inputType="numberSigned"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edit_my_product_price"
                 app:layout_constraintWidth_percent=".8" />
 
             <Spinner
@@ -104,7 +118,7 @@
                 android:paddingVertical="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/edit_my_product_price"
+                app:layout_constraintTop_toBottomOf="@id/edit_my_product_quantity"
                 app:layout_constraintWidth_percent=".8" />
 
             <Button

@@ -26,6 +26,7 @@ import com.example.magazinonline.MainPart.Fragments.HomeFragment;
 import com.example.magazinonline.MainPart.Fragments.MyProductsFragment;
 import com.example.magazinonline.MainPart.Fragments.ProducerDetailsFragment;
 import com.example.magazinonline.MainPart.Fragments.ProducersFragment;
+import com.example.magazinonline.MainPart.Fragments.SendProducerEmailFragment;
 import com.example.magazinonline.MainPart.ViewModels.HomeViewModel;
 import com.example.magazinonline.R;
 import com.google.android.material.navigation.NavigationView;
@@ -120,6 +121,8 @@ public class Home extends AppCompatActivity implements NavigationView.
             setFragment(new MyProductsFragment());
         else if (viewModel.getSelectedFragment() instanceof ProducerDetailsFragment) {
             setFragment(new ProducersFragment());
+        } else if (viewModel.getSelectedFragment() instanceof SendProducerEmailFragment) {
+            setFragment(new ProducerDetailsFragment());
         } else {
             super.onBackPressed();
         }

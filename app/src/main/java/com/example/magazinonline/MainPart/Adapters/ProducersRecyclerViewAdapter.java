@@ -2,7 +2,6 @@ package com.example.magazinonline.MainPart.Adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import com.example.magazinonline.MainPart.Fragments.ProducerDetailsFragment;
 import com.example.magazinonline.MainPart.ViewModels.HomeViewModel;
 import com.example.magazinonline.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProducersRecyclerViewAdapter extends RecyclerView.

@@ -1,18 +1,19 @@
 package com.example.magazinonline.MainPart.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.magazinonline.Classes.Model;
-import com.example.magazinonline.MainPart.Activities.ProductDetails;
 import com.example.magazinonline.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +31,7 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
     private Context context;
     private List<Model> modelList;
     private RecyclerView recyclerView;
+    private Activity parentActivity;
     private static DatabaseReference databaseReference = FirebaseDatabase
             .getInstance().getReference();
     private static FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -49,10 +51,12 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
 
     public ShoppingCartRecyclerViewAdapter(Context context,
                                            List<Model> modelList,
-                                           RecyclerView recyclerView) {
+                                           RecyclerView recyclerView,
+                                           Activity parentActivity) {
         this.context = context;
         this.modelList = modelList;
         this.recyclerView = recyclerView;
+        this.parentActivity = parentActivity;
     }
 
     @NonNull
@@ -64,7 +68,8 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
                 .from(context)
                 .inflate(R.layout.recycler_view_item_layout, parent, false);
 
-        return new ShoppingCartRecyclerViewViewHolder(view, modelList, recyclerView);
+        return new ShoppingCartRecyclerViewViewHolder(view, modelList, recyclerView, context,
+                parentActivity);
     }
 
     // in metoda asta afisam datele produsului
@@ -72,7 +77,8 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
     public void onBindViewHolder(@NonNull ShoppingCartRecyclerViewAdapter
             .ShoppingCartRecyclerViewViewHolder holder, int position) {
         model = modelList.get(position);
-        String priceText = model.getPretProdus() + " " + ProductDetails.getCurrency();
+        String priceText = model.getPretProdus() + " " + parentActivity
+                .getResources().getString(R.string.currency);
 
         Glide.with(context).load(model.getImage()).into(holder.productImage);
         holder.productName.setText(model.getNumeProdus());
@@ -101,14 +107,20 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
         private ImageView productSubtract;
         private List<Model> modelList;
         private RecyclerView recyclerView;
+        private Context context;
+        private Activity parentActivity;
 
         public ShoppingCartRecyclerViewViewHolder(@NonNull View itemView,
                                                   List<Model> modelList,
-                                                  RecyclerView recyclerView) {
+                                                  RecyclerView recyclerView,
+                                                  Context context,
+                                                  Activity parentActivity) {
             super(itemView);
 
             this.modelList = modelList;
             this.recyclerView = recyclerView;
+            this.context = context;
+            this.parentActivity = parentActivity;
 
             setVariables(itemView);
             setOnClickListeners();
@@ -156,24 +168,77 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
                                                     (ShoppingCartRecyclerViewAdapter) recyclerView
                                                             .getAdapter();
 
-                                            // setam cantitatea produsului in lista ce va fi afisata
-                                            // in recyclerview
-                                            model.setCantitate(quantity + 1);
-
-                                            // incrementarea cantitatii produsului in baza de date
                                             ShoppingCartRecyclerViewAdapter
                                                     .getDatabaseReference()
-                                                    .child("User")
-                                                    .child(ShoppingCartRecyclerViewAdapter
-                                                            .getCurrentUser().getUid())
-                                                    .child("shoppingCart")
-                                                    .child(model.getIdProdus())
-                                                    .setValue(quantity + 1);
+                                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if (snapshot.exists() &&
+                                                                    snapshot.hasChild("Product") &&
+                                                                    snapshot.child("Product").hasChildren())
+                                                                for (DataSnapshot productID :
+                                                                        snapshot.child("Product").
+                                                                                getChildren())
+                                                                    if (String.valueOf(productID.
+                                                                            getKey())
+                                                                            .equals(model.getIdProdus()) &&
+                                                                            productID.hasChild("cantitateProdus")) {
+                                                                        int productQuantityFromDatabase =
+                                                                                Integer.parseInt(String.
+                                                                                        valueOf(productID.
+                                                                                                child("cantitateProdus")
+                                                                                                .getValue()));
 
-                                            // actualizam adapter-ul recyclerview-ului
-                                            // dupa modificarea cantitatii produsului
-                                            if (adapter != null)
-                                                adapter.notifyItemChanged(getBindingAdapterPosition());
+                                                                        if (productQuantityFromDatabase > 0) {
+                                                                            // setam cantitatea
+                                                                            // produsului in lista
+                                                                            // ce va fi afisata
+                                                                            // in recyclerview
+                                                                            model.setCantitate(quantity + 1);
+
+                                                                            // incrementarea
+                                                                            // cantitatii produsului
+                                                                            // in baza de date
+                                                                            ShoppingCartRecyclerViewAdapter
+                                                                                    .getDatabaseReference()
+                                                                                    .child("User")
+                                                                                    .child(ShoppingCartRecyclerViewAdapter
+                                                                                            .getCurrentUser()
+                                                                                            .getUid())
+                                                                                    .child("shoppingCart")
+                                                                                    .child(model.getIdProdus())
+                                                                                    .setValue(quantity + 1);
+
+                                                                            ShoppingCartRecyclerViewAdapter
+                                                                                    .getDatabaseReference()
+                                                                                    .child("Product")
+                                                                                    .child(model.getIdProdus())
+                                                                                    .child("cantitateProdus")
+                                                                                    .setValue(productQuantityFromDatabase - 1);
+
+                                                                            // actualizam adapter-ul recyclerview-ului
+                                                                            // dupa modificarea cantitatii produsului
+                                                                            if (adapter != null) {
+                                                                                adapter.notifyItemChanged(getBindingAdapterPosition());
+                                                                            }
+                                                                        } else {
+                                                                            Toast.makeText(context,
+                                                                                    parentActivity.
+                                                                                            getResources().
+                                                                                            getString(R.string.
+                                                                                                    product_no_longer_available),
+                                                                                    Toast.LENGTH_SHORT).show();
+                                                                        }
+
+                                                                        break;
+                                                                    }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
                                         }
                                     }
 
@@ -202,6 +267,71 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
                     // actualizam adapter-ul recyclerview-ului dupa stergerea produsului
                     if (adapter != null)
                         adapter.notifyItemRemoved(getBindingAdapterPosition());
+
+                    ShoppingCartRecyclerViewAdapter
+                            .getDatabaseReference()
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    if (snapshot.exists() &&
+                                            snapshot.hasChild("User") &&
+                                            snapshot.child("User").hasChildren())
+                                        for (DataSnapshot userID :
+                                                snapshot.child("User").getChildren())
+                                            if (String.valueOf(userID.getKey()).
+                                                    equals(ShoppingCartRecyclerViewAdapter.
+                                                            getCurrentUser().getUid())) {
+                                                if (userID.hasChild("shoppingCart") &&
+                                                        userID.child("shoppingCart").hasChildren())
+                                                    for (DataSnapshot userProductID :
+                                                            userID.child("shoppingCart").
+                                                                    getChildren())
+                                                        if (String.valueOf(userProductID.getKey())
+                                                                .equals(model.getIdProdus())) {
+                                                            int shoppingCartProductQuantity =
+                                                                    Integer.parseInt(String.
+                                                                            valueOf(userProductID
+                                                                                    .getValue()));
+
+                                                            if (snapshot.hasChild("Product") &&
+                                                                    snapshot.child("Product")
+                                                                            .hasChildren())
+                                                                for (DataSnapshot productID :
+                                                                        snapshot.child("Product")
+                                                                                .getChildren())
+                                                                    if (String.valueOf(productID
+                                                                            .getKey()).equals(model
+                                                                            .getIdProdus()))
+                                                                        if (productID.hasChild("cantitateProdus")) {
+                                                                            int productQuantity =
+                                                                                    Integer.parseInt(String
+                                                                                            .valueOf(productID
+                                                                                                    .child("cantitateProdus")
+                                                                                                    .getValue()));
+
+                                                                            ShoppingCartRecyclerViewAdapter
+                                                                                    .getDatabaseReference()
+                                                                                    .child("Product")
+                                                                                    .child(model.getIdProdus())
+                                                                                    .child("cantitateProdus")
+                                                                                    .setValue(productQuantity +
+                                                                                            shoppingCartProductQuantity);
+
+                                                                            break;
+                                                                        }
+
+                                                            break;
+                                                        }
+
+                                                break;
+                                            }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
                     // stergerea produsului din baza de date
                     ShoppingCartRecyclerViewAdapter
@@ -255,6 +385,50 @@ public class ShoppingCartRecyclerViewAdapter extends RecyclerView
                                                     .child("shoppingCart")
                                                     .child(model.getIdProdus())
                                                     .setValue(quantity - 1);
+
+                                            ShoppingCartRecyclerViewAdapter
+                                                    .getDatabaseReference()
+                                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if (snapshot.exists() &&
+                                                                    snapshot.hasChild("Product") &&
+                                                                    snapshot.child("Product").hasChildren())
+                                                                for (DataSnapshot productID :
+                                                                        snapshot.child("Product")
+                                                                                .getChildren())
+                                                                    if (String.valueOf(productID
+                                                                            .getKey()).equals(model
+                                                                            .getIdProdus()) &&
+                                                                            productID.hasChild("cantitateProdus")) {
+                                                                        int productQuantityFromDatabase =
+                                                                                Integer.parseInt(String.
+                                                                                        valueOf(productID
+                                                                                                .child("cantitateProdus")
+                                                                                                .getValue()));
+
+                                                                        ShoppingCartRecyclerViewAdapter
+                                                                                .getDatabaseReference()
+                                                                                .child("Product")
+                                                                                .child(model.getIdProdus())
+                                                                                .child("cantitateProdus")
+                                                                                .setValue(productQuantityFromDatabase + 1);
+
+                                                                        break;
+                                                                    }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
+                                        } else {
+                                            Toast.makeText(context,
+                                                    parentActivity.getResources().
+                                                            getString(R.string.
+                                                                    product_no_longer_exists_in_shopping_cart),
+                                                    Toast.LENGTH_SHORT).show();
                                         }
 
                                         // actualizam adapter-ul recyclerview-ului

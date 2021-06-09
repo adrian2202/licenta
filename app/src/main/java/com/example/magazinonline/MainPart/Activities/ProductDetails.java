@@ -33,7 +33,6 @@ public class ProductDetails extends AppCompatActivity {
     private Object selectedProduct;
     private DatabaseReference databaseReference;
     private FirebaseUser currentUser;
-    private static final String currency = "RON";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +47,14 @@ public class ProductDetails extends AppCompatActivity {
                 setProductImage(((Model) selectedProduct).getImage());
                 setProductName(((Model) selectedProduct).getNumeProdus());
                 setProductDescription(((Model) selectedProduct).getDescriereProdus());
-                setProductPrice(((Model) selectedProduct).getPretProdus() + " " + currency);
+                setProductPrice(((Model) selectedProduct).getPretProdus() + " " +
+                        getResources().getString(R.string.currency));
             } else {
                 setProductImage(((Product) selectedProduct).getImage());
                 setProductName(((Product) selectedProduct).getNumeProdus());
                 setProductDescription(((Product) selectedProduct).getDescriereProdus());
-                setProductPrice(((Product) selectedProduct).getPretProdus() + " " + currency);
+                setProductPrice(((Product) selectedProduct).getPretProdus() + " " +
+                        getResources().getString(R.string.currency));
             }
         }
     }
@@ -65,7 +66,7 @@ public class ProductDetails extends AppCompatActivity {
     }
 
     private void setVariables() {
-        selectedProduct = (Object) getIntent().getSerializableExtra("selected_product");
+        selectedProduct = getIntent().getSerializableExtra("selected_product");
         goBack = findViewById(R.id.product_details_go_back);
         addToCartButton = findViewById(R.id.product_details_add_to_cart_button);
         productImage = findViewById(R.id.product_details_image);
@@ -91,10 +92,6 @@ public class ProductDetails extends AppCompatActivity {
         });
 
         goBack.setOnClickListener(view -> onBackPressed());
-    }
-
-    public static String getCurrency() {
-        return currency;
     }
 
     private void setProductDescription(String description) {
@@ -157,29 +154,93 @@ public class ProductDetails extends AppCompatActivity {
                             if (shoppingCartIsEmpty || !productAlreadyExists) {
                                 if (product instanceof Model) {
                                     databaseReference
-                                            .child("User")
-                                            .child(currentUser.getUid())
-                                            .child("shoppingCart")
+                                            .child("Product")
                                             .child(((Model) product).getIdProdus())
-                                            .setValue(1);
+                                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists() &&
+                                                            snapshot.hasChild("cantitateProdus")) {
+                                                        int currentProductQuantity =
+                                                                Integer.parseInt(String.
+                                                                        valueOf(snapshot.
+                                                                                child("cantitateProdus")
+                                                                                .getValue()));
+
+                                                        if (currentProductQuantity > 0) {
+                                                            databaseReference
+                                                                    .child("Product")
+                                                                    .child(((Model) product).getIdProdus())
+                                                                    .child("cantitateProdus")
+                                                                    .setValue(currentProductQuantity - 1)
+                                                                    .addOnSuccessListener(aVoid -> databaseReference
+                                                                            .child("User")
+                                                                            .child(currentUser.getUid())
+                                                                            .child("shoppingCart")
+                                                                            .child(((Model) product).getIdProdus())
+                                                                            .setValue(1)
+                                                                            .addOnSuccessListener(aVoid1 -> sendMessage(getResources()
+                                                                                    .getString(R.string.product_added_to_cart))));
+                                                        } else {
+                                                            sendMessage(getResources()
+                                                                    .getString(R.string.product_no_longer_available));
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
                                 } else {
                                     databaseReference
-                                            .child("User")
-                                            .child(currentUser.getUid())
-                                            .child("shoppingCart")
+                                            .child("Product")
                                             .child(((Product) product).getIdProdus())
-                                            .setValue(1);
+                                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                    if (snapshot.exists() &&
+                                                            snapshot.hasChild("cantitateProdus")) {
+                                                        int currentProductQuantity =
+                                                                Integer.parseInt(String.
+                                                                        valueOf(snapshot.
+                                                                                child("cantitateProdus")
+                                                                                .getValue()));
+
+                                                        if (currentProductQuantity > 0) {
+                                                            databaseReference
+                                                                    .child("Product")
+                                                                    .child(((Product) product).getIdProdus())
+                                                                    .child("cantitateProdus")
+                                                                    .setValue(currentProductQuantity - 1)
+                                                                    .addOnSuccessListener(aVoid -> databaseReference
+                                                                            .child("User")
+                                                                            .child(currentUser.getUid())
+                                                                            .child("shoppingCart")
+                                                                            .child(((Product) product).getIdProdus())
+                                                                            .setValue(1)
+                                                                            .addOnSuccessListener(aVoid12 -> sendMessage(getResources()
+                                                                                    .getString(R.string.product_added_to_cart))));
+                                                        } else {
+                                                            sendMessage(getResources()
+                                                                    .getString(R.string.product_no_longer_available));
+                                                        }
+                                                    }
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                                }
+                                            });
                                 }
-
-                                sendMessage(getResources()
-                                        .getString(R.string.product_added_to_cart));
-                            }
-
-                            // in cazul in care produsul exista deja in cos,
-                            // nu il mai adaugam si afisam mesaj
-                            else
+                            } else {
+                                // in cazul in care produsul exista deja in cos,
+                                // nu il mai adaugam si afisam mesaj
                                 sendMessage(getResources()
                                         .getString(R.string.product_already_in_cart));
+                            }
                         }
 
                         @Override

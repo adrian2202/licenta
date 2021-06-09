@@ -53,8 +53,11 @@ public class ProductInfoFirebase extends AppCompatActivity {
         // setam titlul activitatii si produsele in recyclerview
         if (extras != null) {
             value = extras.getString("position");
-            setPageTitle(value);
-            setPageContent(value);
+
+            if (value != null) {
+                setPageTitle(value);
+                setPageContent(value);
+            }
         }
     }
 
@@ -205,7 +208,7 @@ public class ProductInfoFirebase extends AppCompatActivity {
         String translatedTitle = "";
         String[] categoriesTranslated = getResources().getStringArray(R.array.names);
 
-        switch (title){
+        switch (title) {
             case "Mancare traditionala":
                 translatedTitle = categoriesTranslated[0];
                 break;

@@ -10,6 +10,7 @@ public class Product implements Serializable {
     private String NumeProdus;
     private String descriereProdus;
     private String PretProdus;
+    private int cantitateProdus;
     private ProducerAddress AdresaProducator;
     private double LatitudineProducator;
     private double LongitudineProducator;
@@ -26,6 +27,7 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
+                   int cantitateProdus,
                    ProducerAddress adresaProducator,
                    double latitudineProducator,
                    double longitudineProducator,
@@ -36,6 +38,7 @@ public class Product implements Serializable {
         this.NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
         this.PretProdus = pretProdus;
+        this.cantitateProdus = cantitateProdus;
         this.AdresaProducator = adresaProducator;
         this.LatitudineProducator = latitudineProducator;
         this.LongitudineProducator = longitudineProducator;
@@ -48,6 +51,7 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
+                   int cantitateProdus,
                    MyTime dataAdaugareProdus,
                    String categorie) {
         this.idProdus = idProdus;
@@ -55,6 +59,7 @@ public class Product implements Serializable {
         this.NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
         this.PretProdus = pretProdus;
+        this.cantitateProdus = cantitateProdus;
         this.dataAdaugareProdus = dataAdaugareProdus;
         this.Categorie = categorie;
     }
@@ -64,6 +69,7 @@ public class Product implements Serializable {
                    String numeProdus,
                    String descriereProdus,
                    String pretProdus,
+                   int cantitateProdus,
                    ProducerAddress adresaProducator,
                    double latitudineProducator,
                    double longitudineProducator,
@@ -72,14 +78,15 @@ public class Product implements Serializable {
                    String image) {
         this.idProdus = idProdus;
         this.idProducator = idProducator;
-        NumeProdus = numeProdus;
+        this.NumeProdus = numeProdus;
         this.descriereProdus = descriereProdus;
-        PretProdus = pretProdus;
-        AdresaProducator = adresaProducator;
-        LatitudineProducator = latitudineProducator;
-        LongitudineProducator = longitudineProducator;
+        this.PretProdus = pretProdus;
+        this.cantitateProdus = cantitateProdus;
+        this.AdresaProducator = adresaProducator;
+        this.LatitudineProducator = latitudineProducator;
+        this.LongitudineProducator = longitudineProducator;
         this.dataAdaugareProdus = dataAdaugareProdus;
-        Categorie = categorie;
+        this.Categorie = categorie;
         this.image = image;
     }
 
@@ -121,6 +128,14 @@ public class Product implements Serializable {
 
     public void setPretProdus(String pretProdus) {
         PretProdus = pretProdus;
+    }
+
+    public int getCantitateProdus() {
+        return cantitateProdus;
+    }
+
+    public void setCantitateProdus(int cantitateProdus) {
+        this.cantitateProdus = cantitateProdus;
     }
 
     public ProducerAddress getAdresaProducator() {
@@ -180,6 +195,7 @@ public class Product implements Serializable {
                 ", NumeProdus='" + NumeProdus + '\'' +
                 ", descriereProdus='" + descriereProdus + '\'' +
                 ", PretProdus='" + PretProdus + '\'' +
+                ", cantitateProdus=" + cantitateProdus +
                 ", AdresaProducator=" + AdresaProducator +
                 ", LatitudineProducator=" + LatitudineProducator +
                 ", LongitudineProducator=" + LongitudineProducator +

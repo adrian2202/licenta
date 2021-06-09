@@ -8,10 +8,12 @@
     <string name="change_location">Change location</string>
     <string name="change_profile">Change profile</string>
     <string name="check_email_reset_password">Check your email to reset your password</string>
+    <string name="choose_email_client">Choose an email client</string>
     <string name="client">Client</string>
     <string name="close">Close</string>
     <string name="create">Create</string>
     <string name="create_new_account">Create new account</string>
+    <string name="currency" translatable="false">RON</string>
     <string name="delete_account">Delete account</string>
     <string name="description_required">Description is required</string>
     <string name="edit">Edit</string>
@@ -30,6 +32,7 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="map">Map</string>
+    <string name="message">Message</string>
     <string name="my_cart">My cart</string>
     <string name="my_products">My products</string>
     <string name="name">Name</string>
@@ -37,6 +40,10 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="new_password">New password</string>
     <string name="no_existing_products">There are no products to be shown</string>
+    <string name="no_more_products_in_stock">There are no more products in stock</string>
+    <string name="no_more_products_in_shopping_cart">The product no longer exists in your shopping cart</string>
+    <string name="product_no_longer_exists_in_shopping_cart">The product no longer exists in your shopping cart</string>
+    <string name="product_no_longer_available">The product is no longer available</string>
     <string name="old_password">Old password</string>
     <string name="password">Password</string>
     <string name="password_min_length">Password should have at least 6 characters</string>
@@ -44,6 +51,8 @@
     <string name="pay">Pay</string>
     <string name="phone">Phone</string>
     <string name="phone_required">Phone is required</string>
+    <string name="piece">piece</string>
+    <string name="pieces">pieces</string>
     <string name="please_enter_first_name">Please enter your first name</string>
     <string name="please_enter_last_name">Please enter your last name</string>
     <string name="please_enter_phone">Please enter your phone</string>
@@ -61,6 +70,7 @@
     <string name="product_name">Product name</string>
     <string name="product_name_empty">Product name is empty</string>
     <string name="product_price">Product price</string>
+    <string name="product_quantity">Product quantity</string>
     <string name="product_successfully_modified">The product was successfully modified</string>
     <string name="profile">Profile</string>
     <string name="quantity">Quantity</string>
@@ -69,10 +79,13 @@
     <string name="save">Save</string>
     <string name="select_picture">Select picture</string>
     <string name="seller">Seller</string>
+    <string name="send">Send</string>
     <string name="send_email_for_reset">Send email for reset</string>
+    <string name="send_email">Send email</string>
     <string name="set_your_profile">Set your profile</string>
     <string name="shopping_cart">Shopping cart</string>
     <string name="shopping_cart_is_empty">Your cart is empty</string>
+    <string name="subject">Subject</string>
     <string name="total">Total</string>
     <string name="try_again_something_happened">Try again! Something wrong happened</string>
     <string name="upload_photo">Upload photo</string>

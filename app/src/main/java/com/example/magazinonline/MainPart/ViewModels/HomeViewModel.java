@@ -16,6 +16,9 @@ import com.example.magazinonline.R;
 import java.util.ArrayList;
 import java.util.List;
 
+// viewmodel-ul este o clasa speciala ce are rolul de a tine variabilele intacte pe toata durata
+// sa de viata (de exemplu, nu se pierd datele daca rotim ecranul; ele raman stocate aici
+// si variabilele activitatii/fragmentelor vor fi reinitializate cu vechile lor valori)
 public class HomeViewModel extends AndroidViewModel {
     private List<SlideModel> slideModels = new ArrayList<>();
     private List<App> categories = new ArrayList<>();
@@ -25,11 +28,13 @@ public class HomeViewModel extends AndroidViewModel {
     private User selectedProducer = null;
     private Product selectedProducerProduct = null;
 
+    // constructorul viewmodel-ului
     public HomeViewModel(@NonNull Application application) {
         super(application);
 
         String[] categoryListString = application.getResources().getStringArray(R.array.names);
 
+        // adaugam linkurile imaginilor pe care dorim sa le afisam in slide
         slideModels.add(new SlideModel("https://revistaprogresiv.ro/sites/default/" +
                 "files/article/images/gusturi_romanesti_4.jpg"));
 
@@ -47,6 +52,7 @@ public class HomeViewModel extends AndroidViewModel {
         slideModels.add(new SlideModel("https://medisf.traasgpu.com/ifis/" +
                 "62277a094eff337f-1024x576.jpg"));
 
+        // adaugam categoriile de produse in lista
         categories.add(new App(R.drawable.mancaruri_traditionale, categoryListString[0]));
         categories.add(new App(R.drawable.produse_bio, categoryListString[1]));
         categories.add(new App(R.drawable.bauturi_specifice, categoryListString[2]));

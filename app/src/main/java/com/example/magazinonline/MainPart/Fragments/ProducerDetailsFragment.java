@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -36,6 +37,7 @@ public class ProducerDetailsFragment extends Fragment {
     private DatabaseReference databaseReference;
     private User selectedProducer;
     private ImageView goBack;
+    private Button sendMessageButton;
     private CircleImageView producerImage;
     private TextView producerFullName;
     private TextView producerEmail;
@@ -47,12 +49,6 @@ public class ProducerDetailsFragment extends Fragment {
 
     public ProducerDetailsFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ((Home) requireActivity()).hideToolbar();
     }
 
     @Override
@@ -72,6 +68,7 @@ public class ProducerDetailsFragment extends Fragment {
     public void onStart() {
         super.onStart();
         if (selectedProducer != null) {
+            ((Home) requireActivity()).hideToolbar();
             setProducerDetails();
             setProducerProducts();
         }
@@ -87,6 +84,7 @@ public class ProducerDetailsFragment extends Fragment {
         producerFullName = v.findViewById(R.id.producer_full_name);
         producerEmail = v.findViewById(R.id.producer_email);
         producerPhone = v.findViewById(R.id.producer_phone);
+        sendMessageButton = v.findViewById(R.id.producer_send_message);
         noProductsText = v.findViewById(R.id.producer_no_products_text);
         producerProductsRecyclerView = v.findViewById(R.id.producer_details_recyclerview);
         adapter = new ProducerProductsRecyclerViewAdapter(requireContext(),
@@ -101,8 +99,13 @@ public class ProducerDetailsFragment extends Fragment {
 
     private void setOnClickListeners() {
         goBack.setOnClickListener(view -> requireActivity().onBackPressed());
+
+        sendMessageButton.setOnClickListener(view -> {
+            ((Home) requireActivity()).setFragment(new SendProducerEmailFragment());
+        });
     }
 
+    // metoda pentru setarea informatiilor producatorului selectat
     private void setProducerDetails() {
         String producerFullNameText = selectedProducer.getPrenume() + " " +
                 selectedProducer.getName();
@@ -113,13 +116,17 @@ public class ProducerDetailsFragment extends Fragment {
         producerPhone.setText(selectedProducer.getNrtel());
     }
 
+    // metoda pentru afisarea produselor detinute de producatorul selectat
     private void setProducerProducts() {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // golim lista de produse de fiecare data cand datele din baza de date
+                // se modifica si lista contine deja produse
                 if (!productList.isEmpty())
                     productList.clear();
 
+                // adaugarea in lista a fiecarui produs detinut de producatorul selectat
                 if (snapshot.exists() && snapshot.hasChild("Product"))
                     if (snapshot.child("Product").hasChildren())
                         for (DataSnapshot product : snapshot.child("Product").getChildren())
@@ -132,8 +139,12 @@ public class ProducerDetailsFragment extends Fragment {
                                     productList.add(producerProduct);
                             }
 
+                // notificam adapter-ul la final pentru a actualiza produsele de pe ecran
                 adapter.notifyDataSetChanged();
 
+                // in cazul in care in lista nu exista vreun produs,
+                // ascundem recyclerview-ul si afisam textul ce ne aduce la cunostinta faptul ca
+                // producatorul nu are niciun produs adaugat
                 if (productList.isEmpty()) {
                     producerProductsRecyclerView.setVisibility(View.GONE);
                     noProductsText.setVisibility(View.VISIBLE);

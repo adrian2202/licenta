@@ -78,6 +78,18 @@
     <string name="try_again_something_happened">Încercați din nou! Ceva s-a întâmplat</string>
     <string name="wrong_credentials">Acreditări greșite</string>
     <string name="i_am_here">Locație curentă</string>
+    <string name="product_quantity">Cantitate produs</string>
+    <string name="piece">bucată</string>
+    <string name="pieces">bucăți</string>
+    <string name="no_more_products_in_stock">Nu mai există produse în stoc</string>
+    <string name="no_more_products_in_shopping_cart">Produsul nu mai există în coșul dumneavoastră</string>
+    <string name="product_no_longer_exists_in_shopping_cart">Produsul nu mai există în coșul dumneavoastră</string>
+    <string name="product_no_longer_available">Produsul nu mai este disponibil</string>
+    <string name="send_email">Trimitere email</string>
+    <string name="message">Mesaj</string>
+    <string name="subject">Subiect</string>
+    <string name="send">Trimitere</string>
+    <string name="choose_email_client">Alegeți un client de email</string>
 
     <string-array name="names">
         <item>Mancare traditionala</item>

@@ -43,9 +43,7 @@ public class EditProfile extends AppCompatActivity {
     private TextView profileChangeBtn;
     private EditText nameEditPro;
     private EditText prenumeEditPro;
-    private EditText emailEditPro;
     private EditText nrTelEditPro;
-    private TextView txtName;
     private Uri imageUri;
     private String myUri = "";
     private StorageTask uploadTask;

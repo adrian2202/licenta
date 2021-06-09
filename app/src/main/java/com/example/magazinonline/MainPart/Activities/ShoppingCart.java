@@ -64,7 +64,8 @@ public class ShoppingCart extends AppCompatActivity {
     private void setVariables() {
         recyclerView = findViewById(R.id.shopping_cart_recycler_view);
         modelList = new ArrayList<>();
-        adapter = new ShoppingCartRecyclerViewAdapter(this, modelList, recyclerView);
+        adapter = new ShoppingCartRecyclerViewAdapter(this, modelList, recyclerView,
+                ShoppingCart.this);
         databaseReference = FirebaseDatabase.getInstance().getReference();
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         goBack = findViewById(R.id.shopping_cart_go_back);
@@ -84,15 +85,15 @@ public class ShoppingCart extends AppCompatActivity {
             String[] priceTextSplit = String.valueOf(totalPrice.getText()).split(" ");
 
             // daca suma totala de plata este mai mare ca 0, apelam metoda de plata
-            if (Integer.parseInt(priceTextSplit[0]) > 0)
+            if (Integer.parseInt(priceTextSplit[0]) > 0) {
                 payTheOrder();
-
+            } else {
                 // daca suma totala de plata este 0, se afiseaza mesaj pe ecran
                 // si nu putem realiza plata
-            else
                 Toast.makeText(ShoppingCart.this,
                         getResources().getString(R.string.shopping_cart_is_empty),
                         Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -241,7 +242,7 @@ public class ShoppingCart extends AppCompatActivity {
 
                 // afisam suma totala de plata tocmai calculata
                 // (impreuna cu moneda in care se face plata)
-                totalPriceText = totalSum + " " + ProductDetails.getCurrency();
+                totalPriceText = totalSum + " " + getResources().getString(R.string.currency);
                 totalPrice.setText(totalPriceText);
             }
 
